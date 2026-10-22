@@ -1,0 +1,47 @@
+\makereporttitle{2026}{septembrie}
+
+\makereportpreamble
+
+În această lună am reușit să fac progrese bune pe subiectele de cercetare abordate. Am obținut noi rezultate și am continuat să scriu la articolele pe care lucrez. În a doua jumătate a lunii am fost plecat într-o deplasare în Belgrad, Serbia, pentru a participa la școala de training de \textit{Machine Learning \& Quantum Computing for Future Colliders}.
+
+Pentru studiul tranziției la haos în sistemele Hamiltoniene, am continuat să dezvolt noul cod bazat pe JAX pentru a obține niște rezultate mai precise. Am comparat două metode numerice diferite pentru calculul exponenților Lyapunov: una bazată pe utilizarea jacobianului aplicației de evoluție în timp, iar cealaltă bazată pe o metodă variațională. Ambele sunt mai eficiente și mai precise decât metoda pe care o foloseam anterior, bazată pe articolele lui Benettin \textit{et al.} Noile metode oferă rezultate corespunzătoare cu o varianță redusă și calculează întreg spectrul de exponenți caracteristici, nu doar exponentul Lyapunov maximal. De asemenea, am făcut mai multe teste și experimente pentru a alege valori rezonabile pentru parametrii de integrare numerică. Cu ajutorul acestor coduri, am reușit să studiez evoluția mediei/maximului primului exponent Lyapunov în cazul sistemului Hénon-Heiles. Rezultatele obținute sunt reprezentate în figurile \labelcref{fig:henon_heiles_poincare_surface,fig:henon_heiles_energy_parameter_plane,fig:henon_heiles_lyapunov_exponent_maps,fig:henon_heiles_lyapunov_exponent_energy_slices}.
+
+\begin{figure}[htbp]
+    \centering
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{reports/2026/images/9/henon_heiles_poincare_surface.pdf}
+        \caption{Suprafața Poincaré determinată de hiperplanul \(q_x = 0\) pentru sistemul Hénon-Heiles cu \(E_{\text{total}} = 1/12\), \(\lambda = 1\)}
+        \label{fig:henon_heiles_poincare_surface}
+    \end{minipage}\hfill
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{reports/2026/images/9/henon_heiles_energy_parameter_plane.pdf}
+        \caption{Grila de configurații valide (i.e.~cu traiectorii mărginite) pentru studiul tranziției la haos în sistemul Hénon-Heiles}
+        \label{fig:henon_heiles_energy_parameter_plane}
+    \end{minipage}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.9\linewidth]{reports/2026/images/9/henon_heiles_lyapunov_exponent_maps.pdf}
+    \caption{Media și maximul exponentului Lyapunov maximal pentru un ansamblu de traiectorii eșantionate ale sistemului Hénon-Heiles, la diferite valori ale parametrului de control și ale energiei totale}
+    \label{fig:henon_heiles_lyapunov_exponent_maps}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.9\linewidth]{reports/2026/images/9/henon_heiles_lyapunov_exponent_energy_slices.pdf}
+    \caption{Media și maximul exponentului Lyapunov maximal pentru un ansamblu de traiectorii eșantionate ale sistemului Hénon-Heiles, reprezentate în funcție de energia totală}
+    \label{fig:henon_heiles_lyapunov_exponent_energy_slices}
+\end{figure}
+
+Luna aceasta am făcut un progres semnificativ și în utilizarea descompunerii Cholesky cu pivotare pentru accelerarea metodei gradienților conjugați. Împreună cu Cristian Rusu, am lucrat la articolul ``\textit{Calibrated rank selection for pivoted Cholesky kernel solvers}'', pe care l-am trimis la conferința \href{https://2027.ieeeicassp.org/}{ICASSP 2027}. Am reușit să îmbinăm modelul teoretic (pentru complexitatea de timp a algoritmului) cu niște constante de scalare (măsurate empiric), obținând astfel o metodă robustă pentru a estima rangul optim al matricei de precondiționare folosită pentru a rezolva un sistem liniar mare și dens.
+
+Pe partea de fizica energiilor înalte (HEP), am continuat să rulez simulări Monte Carlo pentru generarea de date și am antrenat modele de învățare automată (\textit{Gradient Boosted Trees}). Am obținut astfel numerele finale de care avem nevoie în studiul nostru pe noi canale de descoperire ale unui \emph{ultraheavy diquark} la viitorul accelerator HL-LHC.
+
+În a doua parte a lunii am participat la \textit{The First Training School on Machine Learning \& Quantum Computing for Future Colliders} (MLQC4FC), organizată de Institutul de Fizică din Belgrad, Serbia, ca parte din acțiunea COST (\textit{European Cooperation in Science and Technology}) MLQC4FC. În cadrul acestei școli, am participat la prelegeri și laboratoare practice pe o gamă largă de subiecte interesante cum ar fi învățare automată, calcul cuantic, detecția de anomalii, modele surogat, comunicarea științei, statistică etc. Cunoștințele acumulate mă vor ajuta atât în studiile actuale pe care lucrez, cât și în cariera mea viitoare.
+
+\textbf{Observațiile conducătorului științific}:
+
+\makereportpostamble{28 septembrie 2026}

@@ -1,0 +1,138 @@
+\makereporttitle{2025}{septembrie}
+
+\makereportpreamble
+
+\vspace{0.5em}
+
+În această lună, am făcut progrese semnificative în redactarea și finalizarea lucrărilor de cercetare pe care vreau să le public în curând, precum și pe alte proiecte mai mici la care lucrez.
+
+Referitor la studiul Hamiltonianului cuadrupol bosonic, am realizat la începutul lunii că limbajul Julia nu-mi oferă flexibilitatea și experiența de dezvoltare necesară pentru a obține niște rezultate numerice și grafice suficient de calitative pentru o publicație într-un jurnal de top. Prin urmare, am început procesul de rescriere/reimplementare a întregului cod de simulare numerică în limbajul \href{https://www.python.org/}{Python}, bazându-mă predominant pe bibliotecile \href{https://numpy.org/}{NumPy} și \href{https://scipy.org/}{SciPy}. Rezultatele efortului meu se pot vedea în calitatea noilor grafice și valori numerice obținute cu codul rescris (figurile \ref{fig:simplified_qbh_equipotential_curves} și \ref{fig:simplified_qbh_3d_trajectories}).
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.6\linewidth]{reports/2025/images/9/simplified_qbh_equipotential_curves}
+    \caption{Curbele de echipotențial pentru Hamiltonianul cuadrupol bosonic de parameterii \(A = 1.0\) MeV, \(B = 0.59 A\), \(D = 0.4 A\)}
+    \label{fig:simplified_qbh_equipotential_curves}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.7\linewidth]{reports/2025/images/9/simplified_qbh_3d_trajectories}
+    \caption{Proiecție în 3D a unor traiectorii din spațiul fazelor Hamiltonianului cuadrupol bosonic de parameterii \(A = 1.0\) MeV, \(B = 0.5 A\), \(D = 0.4 A\)}
+    \label{fig:simplified_qbh_3d_trajectories}
+\end{figure}
+
+Totodată, cu ocazia reproiectării codului de simulare numerică și regândirea abordării proiectului de cercetare, am început să redactez primele \textit{draft}-uri ale viitorului \textit{research paper} pe care intenționez să-l public pe acest subiect. Am terminat de scris introducerea și partea în care descriem modelul teoretic cu care lucrăm, iar ulterior am detaliat calculele din care putem obține punctele de echilibru ale sistemului, respectiv diferitele metode prin care putem genera condiții inițiale utile pentru studierea diferitelor aspecte ale Hamiltonianului. Mai mult, am îmbunătățit codul de desenare al suprafețelor Poincaré, producând niște figuri mult mai sugestive și mai precise (exemplu în figura \ref{fig:simplified_qbh_poincare_surface_new}).
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.7\linewidth]{reports/2025/images/9/simplified_qbh_poincare_surface_new}
+    \caption{Suprafața de secțiune Poincaré pentru hiperplanul \(q_0 = 0\), pentru Hamiltonianul cuadrupol bosonic de parametrii \(A = 1.0\) MeV, \(B = 0.5 A\), \(D = 0.4 A\) și \(E_{\text{totală}} = 5 A\)}
+    \label{fig:simplified_qbh_poincare_surface_new}
+\end{figure}
+
+În cadrul colaborării mele cu grupul de ATLAS din DFPE al IFIN-HH, am finalizat de rulat analiza de date pentru un nou set de dezintegrări posibile ale scalarului diquark \(S_{u u}\). Una dintre acestea este reprezentată în diagrama din figura \ref{fig:diquark_diagram_wb_ht_jjb_bbt}. Urmează să verific și impactul unor noi procese de fundal care nu au fost incluse în analizele inițiale. Cu această ocazie, am refactorizat și îmbunătățit codul de analiză, făcându-l mai ușor configurabil prin fișiere YAML. De asemenea, l-am ajutat pe colegul care dezvoltă codul de analiză statistică să-și paralelizeze programul, folosind API-ul de multiprocessing din biblioteca ROOT.
+
+% Wb-Ht -> jjb-bbt
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}
+      \begin{feynman}
+        % This is the left endpoint of the S_{uu} dashed line
+        \vertex (z1);
+        % This is the right endpoint of the S_{uu} dashed line
+        \vertex [right=1.5cm of z1] (z2);
+        \vertex [above left=0.75cm and 1.5cm of z1] (e1) {\(u\)};
+        \vertex [below left=0.75cm and 1.5cm of z1] (e2) {\(u\)};
+
+        % The two chi's
+        \vertex [above right=0.8cm and 1cm of z2] (x1);
+        \vertex [below right=1.1cm and 1.5cm of z2] (x2);
+    
+        \vertex [above right=0.25cm and 0.75cm of x1] (x11);
+        \vertex [above right=0.1cm and 0.75cm of x11] (j1) {\(j\)};
+        \vertex [below right=0.1cm and 1cm of x11] (j2) {\(j\)};
+        \vertex [below right=0.75cm and 1cm of x11] (b1) {\(b\)};
+        
+        \vertex [above right=0.5cm and 1.5cm of x2] (x21);
+        \vertex [above right=0.25cm and 1cm of x21] (b2) {\(b\)};
+        \vertex [right=1cm of x21] (b3) {\(b\)};
+        
+        \vertex [below right=1.0cm and 1cm of x2] (x22);
+        \vertex [above right=0.25cm and 1cm of x22] (x221);
+        \vertex [above right=0.25cm and 1cm of x221] (j3) {\(j\)};
+        \vertex [below right=0.25cm and 1cm of x221] (j4) {\(j\)};
+        \vertex [below right=0.75cm and 1.5cm of x22] (b4) {\(b\)};
+        
+        \diagram* {
+          (e1) -- [fermion] (z1),
+          (e2) -- [fermion] (z1),
+    
+          (z1) -- [scalar, edge label=\(S_{uu}\)] (z2),
+        
+          (z2) -- [fermion, edge label=\(\chi\)] (x1),
+          (z2) -- [fermion, edge label'=\(\chi\)] (x2),
+    
+          (x1) -- [boson, edge label={\(W^{+}\)}] (x11),
+          (x11) -- [fermion] (j1),
+          (x11) -- [fermion] (j2),
+          (x1) -- [fermion] (b1),
+          
+          (x2) -- [scalar, edge label={\(H\)}] (x21),
+          (x2) -- [fermion, edge label'={\(t\)}] (x22),
+          
+          (x21) -- [fermion] (b2),
+          (x21) -- [fermion] (b3),
+          (x22) -- [boson, edge label={\(W^{+}\)}] (x221),
+          (x221) -- [fermion] (j3),
+          (x221) -- [fermion] (j4),
+          (x22) -- [fermion] (b4),
+        };
+      \end{feynman}
+    \end{tikzpicture}
+    \caption{Diagramă Feynman pentru un proces propus de producere al rezonanței \(S_{uu}\), urmată de descompunerea în două particule \(\chi\) care apoi se dezintegrează în \(W^{+} b\) și \(H t\), cu dezintegrări ulterioare hadronice, rezultând într-o stare finală cu 8 jeturi.
+    }
+    \label{fig:diquark_diagram_wb_ht_jjb_bbt}
+\end{figure}
+
+Pe partea de dezvoltare a unor metode paralelizate mai eficiente pentru rezolvarea sistemelor liniare mari, am reușit să adaptez algoritmul de \textit{randomly-pivoted Cholesky} (RPCholesky) din lucrarea ``\textit{Randomly pivoted Cholesky:
+Practical approximation of a kernel matrix
+with few entry evaluations}'' a lui Chen, Epperly, Tropp și Webber la problema mea. Acest algoritm s-a dovedit a fi foarte util pentru construcția iterativă a unei matrici de precondiționare (de fapt, o aproximare de rang mic) pentru sistemul de rezolvat. Utilizând metoda lor, integrată cu abordarea mea, am reușit să obțin primele rezultate care să indice că ideea de la care am plecat are șanse să fie utilă în practică. Timpii de execuție dintr-un experiment simplificat se pot vedea în figura \ref{fig:pcg_rpcholesky_times}.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=1\linewidth]{reports/2025/images/9/pcg_rpcholesky_times_low_kappa}
+    \caption{Comparație între timpii de execuție pentru rezolvarea unui sistem liniar mare folosind metoda gradienților conjugați cu diferite strategii de precondiționare}
+    \label{fig:pcg_rpcholesky_times}
+\end{figure}
+
+În urma școlii de dinamica fluidelor care s-a ținut la IMAR în vară, am inițiat o colaborare pe studiul numeric al instabilității/neunicității soluțiilor ecuațiilor Euler incompresibile în două dimensiuni spațiale, care s-a concretizat în această lună în reproducerea cu succes (și îmbunătățită) a soluțiilor numerice propuse de Bressan și Shen în „\textit{A Posteriori Error Estimates for Self-Similar Solutions to the Euler Equations}”. O soluție concretă este reprezentată grafic în figura \ref{fig:incompressible_euler_2d_fem}.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.7\linewidth]{reports/2025/images/9/incompressible_euler_2d_fem}
+    \caption{Soluție numerică a ecuațiilor Euler 2D pentru fluide incompresibile și inviscide, obținută folosind metoda elementului finit (programul \href{https://freefem.org/}{FreeFEM})}
+    \label{fig:incompressible_euler_2d_fem}
+\end{figure}
+
+O altă colaborare care s-a concretizat în luna septembrie este cu doamna profesoară Mădălina Boca de la Facultatea de Fizică. Încercăm să găsim metode eficiente și precise de integrare numerică pentru integrale oscilatorii, cum sunt cele care apar la aplicarea transformatei Fourier pe ecuația de evoluție a câmpului de potențial electromagnetic:
+\[
+    \frac{\diff I^2}{\diff \omega \diff \Omega} = \frac{1}{2\pi} \int_{-\infty}^{+\infty} A\left(\vec{r}, t'\right) e^{i \omega t'} \diff t'
+\]
+
+În septembrie au avut loc multe evenimente și referitoare la proiectul DANUBIUS. Între 17-19 septembrie a avut loc o adunare generală a consorțiului, la care am participat împreună cu Rareș Cristea, ca reprezentanți din partea Universității din București. În cadrul acestor discuții, am lucrat la redactarea unor răspunsuri actualizate pentru chestionarul de review de 10 ani pentru ESFRI, pe care trebuie să-l trimitem până la finalul anului. Totodată, am discutat cu mai mulți parteneri din proiect și am făcut progrese referitoare la integrarea seturilor lor de date în platforma pe care o dezvoltăm la UB. Starea actuală a portalului de date se poate vedea în figura \ref{fig:danubius_ri_data_portal}. Pe lângă integrarea de harvesting a seturilor de date din instanța de CKAN a celor de la GeoEcoMar, am dezvoltat un prototip de plugin de harvesting pentru Zenodo (care să poată extrage, de exemplu, seturile de date din comunitatea GeoEcoMar de pe Zenodo), respectiv am început lucrul la un harvester pentru SensorThings API (folosit de către University of Stirling în cadrul SIEC) și unul pentru ERDDAP (folosit de către CNR-ISMAR).
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\linewidth]{reports/2025/images/9/danubius_data_portal}
+    \caption{Pagina principală a portalului de date științifice al DANBUIUS-RI}
+    \label{fig:danubius_ri_data_portal}
+\end{figure}
+
+Tot pe partea tehnică, luna aceasta am ajuns la o variantă finală a formularelor de solicitare acces la Centrul de Calcul Avansat (\textit{Advanced Computing Center}). Draft-ul de procedură a fost trimis către factorii de decizie din UB spre a fi discutat și aprobat.
+
+În această lună m-am angajat pe proiectul C4DD, unde am început să-mi desfășor activitatea de administrator tehnic al platformei web și editor de conținut. Am reparat configurația certificatelor TLS din setările \textit{hosting provider}-ului, am actualizat instanța de WordPress și plugin-urile asociate, am reparat problemele de sincronizare între modulul custom de integrare și platforma centrală a \emph{Digital Skills for EU} și am înregistrat domeniul pe care se află site-ul la Google Search Console, pentru a putea face ulterior \textit{search-engine optimization}.
+
+\textbf{Observațiile conducătorului științific}:
+
+\makereportpostamble{29 septembrie 2025}

@@ -1,0 +1,49 @@
+\makereporttitle{2026}{iunie}
+
+\makereportpreamble
+
+În iunie, am continuat să lucrez pe temele de cercetare existente și să rafinez unele rezultate obținute. De asemenea, am continuat să aprofundez studiul literaturii în vederea redactării unor lucrări de cercetare cu rezultatele deja obținute.
+
+Pentru studiul tranziției la haos în sistemele Hamiltoniene, luna aceasta m-am concentrat pe revizuirea literaturii de specialitate și parcurgerea unor referințe primite de la domnul profesor Virgil Băran. Obiectivul meu este să înțeleg cât mai bine cum poate fi integrat rezultatul cercetării noastre în contextul mai larg al teoriei KAM în sistemele dinamice conservative. În acest scop, am început să citesc lucrarea ``\textit{Critical behavior of a KAM surface}'' a lui S.~J.~Shenker și L.~P.~Kadanoff, publicată în 1982 în  \textit{Journal of Statistical Physics} (volumul 27, paginile 631--656). Aceasta face referire la o serie de articole a lui J.~Greene, în care propune un mod de a măsura torii invarianți și evoluția lor în momentul în care apare haosul. Lucrarea noastră studiază numeric comportamentul critic al sistemului în cadrul aceleiași tranziții.
+
+Am reușit să rezolv mai multe limitări și probleme cu codul de simulare numerică a electronilor accelerați de un fascicul Laguerre-Gauss. Am identificat câteva probleme referitoare la modul în care era reprezentat 4-impulsul relativist al particulelor și am îmbunătățit precizia algoritmului de integrare numerică, trecând de la metoda Euler la un Runge-Kutta de ordin 4. Astfel, am reușit să obțin rezultate precise chiar și în scenariul în care amplitudinea normalizată a laserului, parametrul \(a_0\), este de ordinul unității. De asemenea, codul acum este capabil să calculeze corect traiectoria particulelor chiar și atunci când au un impuls inițial. Noile rezultate sunt reprezentate grafic în figurile \labelcref{fig:electron_trajectory,fig:electron_momentum,fig:electric_field,fig:orbital_angular_momentum_transfer}.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.9\linewidth]{reports/2026/images/6/electron_trajectory.pdf}
+    \caption{Traiectoria unui electron simulat, accelerat de un puls scurt de fascicul laser Laguerre-Gauss}
+    \label{fig:electron_trajectory}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.9\linewidth]{reports/2026/images/6/electron_momenta.pdf}
+    \caption{Impulsul relativist al unui electron simulat, accelerat de un puls scurt de fascicul laser Laguerre-Gauss}
+    \label{fig:electron_momentum}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{reports/2026/images/6/electric_field.pdf}
+    \caption{Intensitatea câmpului electric pe detector}
+    \label{fig:electric_field}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{reports/2026/images/6/orbital_angular_momentum.pdf}
+    \caption{Transferul de moment cinetic unghiular pe suprafața detectorului}
+    \label{fig:orbital_angular_momentum_transfer}
+\end{figure}
+
+Luna aceasta am clarificat mai multe aspecte referitoare la posibilitatea producerii și detectării unei rezonanțe ultragrele de tip \emph{diquark scalar} la viitorul accelerator de particule HL-LHC. M-am convins împreună cu colegii mei că studiul original a oferit niște predicții mult prea optimiste referitoare la raportul între semnal și fundal, obținut în urma aplicării discriminatorului bazat pe ML. Multe dintre evenimentele de fundal generate inițial de ei, în special cele asociate proceselor de tip QCD \(2 \to \Set{2, 3, 4}\), erau invalide. În lipsa unor tăieturi explicite aplicate pe spațiul fazelor, generatorul de evenimente Pythia a produs foarte multe evenimente ``\textit{soft}'', care au o secțiune de producere foarte mare, dar care nici măcar nu pot fi ``văzute'' de detector. Corectarea acestei situații scade secțiunea acestor procese, dar generează mult mai multe evenimente nenule, relevante pentru studiu, care sunt accidental clasificate drept semnal, ducând la niște \textit{yield}-uri destul de mari la fundal. Astfel, se pare că va trebui să corectăm concluziile ultimelor articole publicate pe această direcție și să adresăm aceste probleme într-un nou articol.
+
+În același timp, vestea bună este că articolul ``\textit{Observability of an ultraheavy diquark decaying into vectorlike quarks at the LHC}'', la care sunt co-autor, a fost publicat în jurnalul \href{https://journals.aps.org/prd/abstract/10.1103/qxhl-4pqz}{Physical Review D}. Mai avem încă un articol care sperăm să treacă în curând de procesul de \textit{peer review}. Între timp, continui să lucrez la articolul meu, care va studia potențialul de descoperire al acestor particule dincolo de Modelul Standard, în cazul dezintegrărilor cu multe jet-uri în starea finală.
+
+Pe partea de analiză numerică, am continuat să experimentez și să validez ideea de cercetare cu alternarea între calculul matricei de precondiționare și iterarea metodei gradienților conjugați pentru rezolvarea unui sistem liniar dens, simetric și pozitiv definit. Încercarea mea de a reproduce și extinde rezultatele pozitive anterioare nu a reușit, iar o analiză teoretică sugerează că există destul de puține situații în care această abordare ar putea fi mai eficientă. În același timp, are avantajul că nu necesită selectarea \textit{a priori} a unui rang optim pentru matricea de precondiționare (atunci când folosim descompunerea Cholesky parțială, cu pivotare).
+
+Luna aceasta am fost și la workshop-ul \textit{14th Bucharest Number Theory Days}, organizat la Institutul de Matematică al Academiei Române (IMAR), precum și la \textit{Bucharest-Shenzhen International Mathematics Conference}. De asemenea, am susținut o prezentare ``\textit{Introduction to valuation theory and Berkovich spaces}'', în cadrul noului seminar de geometrie nearhimedeană de la IMAR.
+
+\textbf{Observațiile conducătorului științific}:
+
+\makereportpostamble{30 iunie 2026}

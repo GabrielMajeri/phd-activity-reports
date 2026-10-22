@@ -1,0 +1,37 @@
+\makereporttitle{2025}{noiembrie}
+
+\makereportpreamble
+
+În noiembrie, %
+
+Pentru proiectul de cercetare pe corespondența între haosul clasic și haosul cuantic, am reușit să finalizez analiza de date a limitei semiclasice, folosind exclusiv noul cod de Python pe care l-am implementat. Rezultatul noilor potriviri de ipoteză pentru comportamentul critic al exponenților Lyapunov maximali poate fi văzut în Figura \ref{fig:gamma_vs_B_optimal_fit_new_data}.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\linewidth]{reports/2025/images/11/gamma_vs_B_optimal_fit}
+    \caption{Exponentul obținut din potrivirea optimă a ipotezei de tip putere, \((B - B_0)^{\gamma}\) pentru exponentul Lyapunov maximal \(\lambda_{\text{max}}\)}
+    \label{fig:gamma_vs_B_optimal_fit_new_data}
+\end{figure}
+
+Am reușit să integrez multe din aceste rezultate și în draft-ul de articol de cercetare la care lucrez. În lunile următoare sper să termin de implementat și rafinat codul și să ajung la o variantă mai finală a articolului.
+
+Referitor la proiectul de cercetare cu paralelizarea construcției matricii de precondiționare pentru rezolvarea sistemelor liniare mari, am reușit să-mi dau seama de o eroare fundamentală din codul meu de test, care ducea la rezultatele aberante pe care le obțineam. De asemenea, am implementat și algoritmul Cholesky cu pivotare bazat pe o alegere \textit{greedy}, mai simplu decât Cholesky cu pivotare aleatorie (\textsc{RPCholesky}) pe care îl încercasem anterior. Noile rezultate, foarte promițătoare, pot fi găsite în Figura \ref{fig:pcg_pivoted_cholesky_times}.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.9\linewidth]{reports/2025/images/11/pcg_pivoted_cholesky_times}
+    \caption{}
+    \label{fig:pcg_pivoted_cholesky_times}
+\end{figure}
+
+În cadrul colaborării mele cu grupul de ATLAS de la IFIN-HH, am reușit să finalizăm și să publicăm un \href{https://arxiv.org/abs/2511.02474}{preprint} referitor la analiza statistică a procesului teoretic de dezintegrare pe care îl studiem. Totodată, am reușit să reproduc și să înțeleg problema referitoare la generarea proceselor de fundal folosind \href{http://madgraph.phys.ucl.ac.be/}{MadGraph5}, diagnosticare care a dus și la deschiderea unui \href{https://bugs.launchpad.net/mg5amcnlo/+bug/2133173}{bug report} pentru această unealtă. Voi încerca să ocolesc problema întâmpinată, pentru a putea genera datele și finaliza studiul pe care l-am început.
+
+Pe parcursul acestei luni, am intervenit de mai multe ori la Centrul de Calcul Avansat (ACC-UB), împreună cu ceilalți responsabili tehnici, pentru a investiga problemele cu încălzirea excesivă a echipamentelor. S-au identificat deficiențe cu sistemul de răcire și s-au transmis observațiile la proiectant. Într-o notă mai pozitivă, în această lună am reușit să configurăm sistemul de \href{https://envmodules.io/}{Environment Modules}, pe care îl vom folosi pentru a gestiona instalările de software științific / de sistem, partajate la nivel de cluster. 
+
+La finalul lunii, între 25 și 28 noiembrie, a avut loc \href{https://unibuc.ro/conferinta-anuala-de-comunicare-a-rezultatelor-cercetarii-la-universitatea-din-bucuresti-ajunge-la-a-patra-editie-si-propune-un-format-optimizat-mai-dinamic-si-inovator-2/}{a patra ediție a \emph{Conferinței anuale de comunicare a rezultatelor cercetării la Universitatea din București}}, la care am participat cu o prezentare orală intitulată ``\textit{Comportamente critice în tranziția la haos a sistemelor dinamice Hamiltoniene}'', co-autor fiind domnul prof.~dr.~Virgil Băran. Recepția din partea audienței a fost una pozitivă. De asemenea, am urmărit cu interes prezentările celorlalți membri ai comunității academice UB.
+
+% TO DO
+
+\textbf{Observațiile conducătorului științific}:
+
+\makereportpostamble{28 noiembrie 2025}

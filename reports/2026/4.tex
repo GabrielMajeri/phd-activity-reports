@@ -1,0 +1,81 @@
+\makereporttitle{2026}{aprilie}
+
+\makereportpreamble
+
+În aprilie, am reușit să obțin rezultate promițătoare pe mai multe teme de cercetare. Încep să se contureze mai multe viitoare lucrări de cercetare în care voi include toate aceste rezultate.
+
+Referitor la studiul universalității în tranzițiile la haos ale sistemelor dinamice conservative, după mai multe experimente și discuții cu domnul profesor Băran, am reușit să ajungem la o înțelegere mai bună a fenomenelor care au loc în spațiul fazelor al sistemelor studiate. Anterior, am încercat să potrivim o ipoteză de tip \emph{power law} pe valoarea exponentului Lyapunov maximal ca funcție de valoarea parametrului \(B\), la diferite energii totale fixate. Principala problemă era la sistemul Hénon–Heiles, echivalent sistemului cuadrupol bosonic cu \(D = 0\), al cărui potențial permite traiectorii nemărginite în spațiu. Soluția găsită a fost să calculăm energia potențială a sistemului în punctele critice care determină regiunea centrală de traiectorii mărginite,
+\[
+    E_{\text{crit}} = \frac{1}{6 \lambda^2}
+\]
+de unde rezultă valoarea critică a parametrului \(\lambda\),
+\[
+    \lambda_{\text{crit}} = \sqrt{\frac{1}{6 E}}
+\]
+Convertind în unitățile folosite pentru Hamiltonianul cuadrupol bosonic, obținem
+\[
+    B = \frac{\sqrt{2}}{3} \lambda \implies B_{\text{crit}} = \frac{\sqrt{2}}{3} \sqrt{\frac{1}{6 E}}
+\]
+Codul de simulare numerică a fost modificat pentru a genera un interval de valori ale lui \(B\) pentru fiecare valoare a lui \(D\) și a energiei totale, repartizate liniar între \(0\) și \(B_{\text{crit}} \left(D, E\right)\). Am reușit astfel să obținem exponenții optimi pentru ipoteza noastră la fiecare valoare a energiei totale. Rezultatele sunt reprezentate grafic în figura \ref{fig:henon_heiles_optimal_gamma_vs_total_energy}.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\linewidth]{reports/2026/images/4/henon_heiles_optimal_gamma_vs_total_energy.pdf}
+    \caption{Valoarea optimă a exponentului \(\gamma\) din legea de tip \textit{power law}, potrivită pe evoluția exponenților Lyapunov maximali, la o energie totală fixă, pentru sistemul Hénon–Heiles (echivalent, sistemul cuadrupol bosonic cu \(D = 0\)).}
+    \label{fig:henon_heiles_optimal_gamma_vs_total_energy}
+\end{figure}
+
+Am observat o ușoară descreștere exponențială a exponentului optim, comportament asemănător cu rezultatele obținute anterior pentru valori mai mari ale lui \(D\).
+
+Planul este să refacem toate simulările de până acum cu noua abordare, cu o precizie cât mai bună, pentru a putea genera graficele finale pe care să le includem într-o lucrare despre acest comportament interesant.
+
+Pe partea de lumină helicoidală și simulările numerice de electrodinamică, am continuat să studiez formalismul matematic asociat cu fasciculul Laguerre-Gauss și să îl implementez în Python. Am revizuit împreună cu d-na.~prof.~Mădălina Boca codul și graficele preliminare pe care le-am obținut și am reușit să reproducem destul de bine rezultatele din lucrarea ``\textit{Scaling Properties of Angular Momentum Transfer
+to Charged Particles under Laguerre-Gauss Laser Pulse}'' a lui P.V.\ Toma, S.\ Micluța-Câmpeanu, M.\ Boca, A.\ Nicolin și V.\ Băran. Un astfel de grafic pe care l-am reprodus este cel pentru parametrii \(p = 2\), \(l = -2\), \(a_0 = 10^{-2}\), reprezentat în figura \ref{fig:laguerre_gauss_beam_angular_momentum_distribution}.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.7\linewidth]{reports/2026/images/4/laguerre_gauss_beam_angular_momentum_distribution_p_2_l_-2.png}
+    \caption{Distribuția valorilor finale ale momentului cinetic unghiular pentru un număr mare de electroni accelerați de un puls de fascicul Laguerre-Gauss. Electronii care au rămas staționari (deoarece se aflau în vorticele optice ale fasciculului) nu au mai fost reprezentați.}
+    \label{fig:laguerre_gauss_beam_angular_momentum_distribution}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.7\linewidth]{reports/2026/images/4/ctbgc_log_radii.pdf}
+    \caption{Evoluția razelor universului toric reprezentat de modelul cosmologic de brane cu timp compact.}
+    \label{fig:ctbgc_log_radii}
+\end{figure}
+
+Pasul următor este să rescriu o parte din cod într-un limbaj compilat (C, C++, Rust sau Fortran) și să-l optimizez pentru a putea rula ulterior simulări cu mai mulți electroni și cu pulsuri mai lungi. De asemenea, vrem să folosim traiectoriile simulate pentru a calcula radiația re-emisă de electroni, ca să vedem dacă pe un detector s-ar putea observa un tipar identificabil pentru un astfel de experiment.
+
+Luna aceasta am reușit să mă aud și cu Andrei Rădoacă-Dogaru pentru a progresa cu simularea numerică a modelului cosmologic gândit de el. După ce am refăcut și reverificat toate calculele pentru ecuația de evoluție, am implementat un cod particularizat de simulare numerică în Python și am obținut rezultatele reprezentate în figura \ref{fig:ctbgc_log_radii}. Pentru a testa modelul, am verificat că, în cazul în care coordonata temporală este constantă, pot reproduce rezultatele modelului clasic a lui Easther \emph{et al.} Din păcate, noul model pare să aibă în continuare aceleași limitări ca cel din literatură: depinde de condițiile inițiale (trebuie să adaug o constantă pozitivă la vitezele inițiale pentru a evita un scenariu de tip ``\textit{big crunch}'') iar razele dimensiunilor compactificate nu tind la \(0\) (dar se stabilizează și rămân aproape constante, sau cel puțin, cresc mult mai încet decât razele dimensiunilor \textit{unwrapped}).
+
+Pe partea de fizica particulelor elementare, am reușit să elucidez cauza diferențelor la nivel de număr de evenimente semnal/fundal între datele vechi, cu procese de fundal simulate exclusiv în Pythia, și datele noi, simulate de mine folosind MadGraph. Se pare că numărul de procese de \textit{background} distincte pe care le generăm are un impact major asupra rezultatelor finale, după cum se poate observa în tabela \ref{tab:number_of_backgrounds_impact}.
+
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{|p{0.4\linewidth} | p{0.2\linewidth} | p{0.2\linewidth} |}
+        \hline
+        \centering
+        Structura datelor & Număr de evenimente semnal & Număr de evenimente fundal \\
+        \hline \hline
+        Date vechi, cu 31 de clase de background, simulate în Pythia & \(7.20\) & \(5.34\) \\
+        \hline
+        Date simulate cu MadGraph, din 4 tipuri mari de background & \(7.20\) & \(0.47\) \\
+        \hline
+        Date simulate cu MadGraph, 21 de clase de background & \(7.09\) & \(5.01\) \\
+        \hline
+    \end{tabular}
+    \caption{Impactul numărului de clase distincte de procese fundal asupra numerelor finale de evenimente semnal/fundal, obținute în urma clasificării folosind ML (\textit{gradient boosted trees}) cu un prag de discriminare \(D = 0.9\).}
+    \label{tab:number_of_backgrounds_impact}
+\end{table}
+
+Având în vedere că majoritatea lucrărilor din literatură care fac analize similare nu folosesc mai mult de 5-6 clase de \textit{background}, pe viitor intenționăm să folosim și noi un număr mai redus în studiile noastre, ceea ce ne va simplifica configurațiile de simulare și îmbunătăți și raportul \(S/B\).
+
+Împreună cu domnul profesor Cristian Rusu, am continuat să investigăm posibilitatea de a paraleliza construcția iterativă a unei matrici de precondiționare în cadrul metodei gradienților conjugați. Ne-am gândit la o variantă simplificată a problemei noastre, în care nu e nevoie să folosim mai multe nuclee sau procesorul + placa video. Abordarea de precondiționare iterativă alternantă se referă la comutarea algoritmului de rezolvare a unui sistem liniar între pasul iterativ de gradienți conjugați și pasul de îmbunătățire a matricii de precondiționare (e.g.~creșterea rangului aproximării date de descompunerea Cholesky parțială cu pivotare). Metoda clasică este să construim mai întâi matricea de precondiționare până la un rang / nivel de calitate fixat, iar apoi să începem să rulăm CG. În contextul nostru, avem opțiunea de a începe cu un \textit{preconditioner} construit parțial, pe care să îl rafinăm pe parcurs, dacă este nevoie.
+
+Pentru a decide strategia optimă a succesiunilor de pași de CG și de Cholesky iterativ, am reformulat totul sub forma unei probleme de decizie Markov (\textit{Markov decision problem}), pentru a putea folosi tehnici din învățarea ranforsată (\textit{reinforcement learning}). Am reușit astfel să antrenez un model \textit{Deep Q Network}, care după \(30\,000\) de decizii luate a învățat cum să rezolve într-un timp cât mai scurt sistemul. Pe exemplul dat (o matrice nucleu, pentru \(N = 2048\) vectori), politica optimă ne spune să calculăm mai întâi descompunerea Cholesky parțială până la rangul \(k = 128\), apoi să efectuăm câțiva zeci de pași de CG, iar apoi să creștem aproximarea până la rangul \(k = 256\), după care să mai facem câteva iterații.
+
+\textbf{Observațiile conducătorului științific}:
+
+\makereportpostamble{30 aprilie 2026}

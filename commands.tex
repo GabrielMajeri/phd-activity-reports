@@ -1,0 +1,67 @@
+% Generate the title of the report
+\newcommand*{\makereporttitle}[2]{
+    \textbf{Școala Doctorală de Fizică} \\[1em]
+    \begin{center}
+        \textbf{\large \uppercase{Raport lunar de activitate}} \\[0.5em]
+        \textbf{Anul #1 luna #2} \\[3em]
+    \end{center}
+}
+
+% Report metadata (PhD student-specific)
+\newcommand*{\phdperiod}{2023--2027}
+\newcommand*{\phdstudydirection}{Fizică teoretică și computațională}
+\newcommand*{\phdadvisor}{prof.~dr.~Virgil Băran}
+\newcommand*{\phdtitle}{Studiul dinamicii sistemelor complexe folosind metode computaționale avansate}
+
+\newcommand*{\makereportpreamble}{%
+    \textbf{Perioada:} \phdperiod \\[0.1em]
+    \textbf{Doctorand:} Gabriel Majeri \\[0.1em]
+    \textbf{Direcție de studii:} \phdstudydirection \\[0.1em]
+    \textbf{Conducător științific:} \phdadvisor \\[0.1em]
+    \textbf{Titlul lucrării de doctorat:} \\[0.1em]
+    \hspace*{1em} \emph{\phdtitle} \\[0.25em]%
+}
+
+\newcommand*{\makereportpostamble}[1]{
+    \vspace{1cm}
+    \begingroup
+        \centering
+        \parbox{4cm}{\centering Data \\[0.1em] #1}
+        \hfill
+        \parbox{6cm}{\centering Semnătura doctorandului \\[0.5em] \hrulefill}
+    \endgroup
+    \vspace{1cm}
+    \begin{flushright}
+        \parbox{6cm}{
+            \centering
+            AVIZAT \\[0.5em]
+            Conducător științific: \\ \phdadvisor \\[0.4em]
+            Semnătura conducătorului științific \\[0.5em]
+            \hrulefill
+        }
+    \end{flushright}
+}
+
+\newcommand*{\reals}{\symbb{R}}
+
+% Little trick to resize math formulas to fit page width
+% Taken from https://tex.stackexchange.com/a/43067/263993
+\newcommand*\scalemath[2]{\scalebox{#1}{\mbox{\ensuremath{\displaystyle #2}}}}
+
+\newcommand*{\diff}{\symrm{d}}
+
+% Absolute value and norm symbols.
+% Code taken from https://tex.stackexchange.com/questions/43008/absolute-value-symbols
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}%
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}%
+
+% Swap the definition of \abs* and \norm*, so that \abs
+% and \norm resizes the size of the brackets, and the 
+% starred version does not.
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+%
+\let\oldnorm\norm
+\def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
+\makeatother

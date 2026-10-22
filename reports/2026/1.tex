@@ -1,0 +1,105 @@
+\makereporttitle{2026}{ianuarie}
+
+\makereportpreamble
+
+Luna aceasta am reușit să fac progrese semnificative și să obțin rezultate promițătoare pe toate direcțiile de cercetare la care lucrez.
+
+La sugestia domnului profesor Băran, am studiat comportamentul critic al aplicației logistice. Pentru început, am scris coduri de simulare numerică pentru traiectorii ale sistemului (Figura \ref{fig:logistic_map_trajectories}), respectiv pentru calculul exponenților Lyapunov ale unui ansamblu de traiectorii, la un parametru de control \(r\) fixat. Putem studia astfel evoluția maximului exponenților Lyapunov ale sistemului în funcție de \(r\) (Figura \ref{fig:logistic_map_maximal_lyapunov_exponents}). În grafic se poate observa că pentru valori mai mari de \(\approx 3.5\), exponentul Lyapunov începe să aibă creșteri bruște către valori pozitive mari, indicând un comportament critic în tranziția la haos.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{reports/2026/images/1/logistic_map_trajectories}
+    \caption{Traiectorii pentru aplicația logistică de parametru \(r = 2.98\). Se poate observa că la această valoare relativ mică a lui \(r\), comportamentul pe termen lung este unul regulat: ele converg la același punct atractor.}
+    \label{fig:logistic_map_trajectories}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{reports/2026/images/1/logistic_map_maximal_lyapunov_exponents}
+    \caption{Exponenții Lyapunov maximali, calculați pentru aplicația logistică la diferite valori ale parametrului de control \(r\). Au fost comparate rezultatele obținute prin două metode (formula explicită pentru sisteme în timp discret, respectiv metoda lui Benettin \emph{et al.}, care funcționează și pentru sisteme continue).}
+    \label{fig:logistic_map_maximal_lyapunov_exponents}
+\end{figure}
+
+O primă provocare a fost identificarea automată a acestor regiuni de tranziție și a punctelor critice (Figura \ref{fig:logistic_map_lyapunov_exponents_change_points}). Am reușit să fac acest lucru folosind un algoritm bazat pe tehnici din procesarea de semnale (în particular, funcția \href{https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.find_peaks.html#scipy.signal.find_peaks}{\texttt{find\_peaks}} din SciPy). Pe baza unor hiperparametrii care se pot alege în funcție de problemă, această metodă se poate generaliza și la graficele exponenților Lyapunov maximali ale altor sisteme dinamice. În Figura \ref{fig:logistic_map_lyapunov_exponents_power_laws} se poate vedea rezultatul potrivirii unor ipoteze de tip funcție putere, \(\lambda \propto \left(r - r_0\right)^{\gamma}\), pe intervalele de tranziție la haos (segmente cu exponenți Lyapunov pozitivi, cuprinse între două puncte critice consecutive). Acești exponenți critici obținuți prin metode de potrivire neliniară de parametrii au fost reprezentați grafic în Figura \ref{fig:logistic_map_power_law_gammas}.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{reports/2026/images/1/logistic_map_lyapunov_exponents_change_points}
+    \caption{Punctele critice ale exponenților Lyapunov maximali pentru aplicația logistică, în intervalul \(r \in \left[3.5, 4\right]\). Punctele au fost identificate automat folosind un algoritm determinist.}
+    \label{fig:logistic_map_lyapunov_exponents_change_points}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{reports/2026/images/1/logistic_map_lyapunov_exponents_power_laws}
+    \caption{Funcții de tip putere \(x^\alpha\) potrivite pe intervalele de tranziție critică la haos ale aplicației logistice}
+    \label{fig:logistic_map_lyapunov_exponents_power_laws}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.7\textwidth]{reports/2026/images/1/logistic_map_power_law_gammas}
+    \caption{Exponenții \(\gamma\) ale tranziților critice la haos în aplicația logistică, în funcție de parametrul \(r\). Punctul portocaliu din stânga-sus reprezintă exponentul critic determinat analtic, \(\ln(2) / \ln(\delta)\), unde \(\delta\) este constanta lui Feigenbaum. Cu verde este reprezentată o ipoteză de descreștere exponențială a acestor exponenți.}
+    \label{fig:logistic_map_power_law_gammas}
+\end{figure}
+
+Tot domnul profesor Băran a propus să studiem numeric niște ipoteze din teza de doctorat a lui Mircea Zus, referitoare la calculul funcției de corelație pentru acest sistem. Coeficientul de corelație al sistemului, în funcție de o distanță fixată \(d\), se poate calcula după formula
+\[
+    C(d) = \frac{2}{N (N - 1)} \sum_{i < j} \theta\left(d - \abs{x_i - x_j}\right) = \frac{1}{N} \sum_{i = 1}^{N} p_i(d)
+\]
+unde \(N\) este un număr (mare) de puncte prin care vom estima valoarea coeficientului, \(\theta\) este funcția indicator a lui Heaviside, iar \(p_i = N_i / (N - 1)\), \(N_i\) reprezentând numărul de puncte \(x_j\) de pe traiectorie care se află la o distanță mai mică sau egală cu \(d\) de \(x_i\), excluzându-l pe \(x_i\) însuși. Expresiile de mai sus sunt echivalente, reprezentând o măsură a cât de ``închegate'' sunt punctele de pe traiectorie. Dacă toate punctele din traiectorie sunt conținute într-o bilă de rază \(d\), atunci \(C(d) = 1\). Dacă toate punctele din traiectorie se află la distanță cel puțin \(d\) unul față de celălalt, atunci \(C(d) = 0\).
+
+Un mod de a aproxima această funcție este calculând valoarea medie a punctelor de pe traiectorie \(\hat{x} = \frac{1}{N} \sum_{i = 1}^{N} x_i\) iar apoi calculând convoluția discretă (de lungime \(m\)) a deviațiilor medii ale punctelor:
+\[
+    C(m) = \frac{1}{N} \sum_{i = 0}^{N - 1} \hat{x}_i \cdot \hat{x}_{i + m}
+\]
+unde \(\hat{x}_i = x_i - \hat{x}\). Rezultatul calculării acestei expresii pentru logistică este prezentat în figurile \ref{fig:logistic_map_correlation_coefficients_vs_m} (în care \(r\) este ținut fix iar \(m\) variază), respectiv \ref{fig:logistic_map_correlation_coefficients_vs_r} (în care \(m\) este fixat iar \(r\) variază).
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{reports/2026/images/1/logistic_map_correlation_coefficients_vs_m}
+    \caption{Valoarea medie a coeficienților de corelație \(C(m)\), calculată pe un eșantion de traiectorii, cu \(r = 3.59\) și \(m\) variabil.}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{reports/2026/images/1/logistic_map_correlation_coefficients_vs_r}
+    \caption{Valoarea medie a coeficienților de corelație \(C(m)\), calculată pe un eșantion de traiectorii, cu \(m = 5\) și \(r\) variabil.}
+    \label{fig:logistic_map_correlation_coefficients_vs_m}
+    \label{fig:logistic_map_correlation_coefficients_vs_r}
+\end{figure}
+
+Plecând de la lecțiile învățate din aceste experimente, am reușit să generalizez abordarea la studiul Hamiltonianului cuadrupol bosonic. Am adaptat algoritmul și l-am optimizat pentru comportamentul tipic al tranziției la haos în acest sistem dinamic. Rezultatele se pot vedea în Figura \ref{fig:qbh_mle_critical_points_detection}.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.7\linewidth]{reports/2026/images/1/qbh_mle_critical_points_detection}
+    \caption{Punctele critice în evoluția exponenților Lyapunov maximali ca funcție de \(B\), la o energie totală fixată \(E = 19.71\) MeV}
+    \label{fig:qbh_mle_critical_points_detection}
+\end{figure}
+
+Folosindu-mă de aceste regiuni de tranziție identificate de algoritm, am reușit să potrivesc mai multe ipoteze de tip funcție putere, \(\lambda \propto \left(B - B_0\right)^{\gamma}\), câte una diferită pentru fiecare energie totală \(E\). Am reușit să observ astfel un comportament universal al tranziției, reprezentat grafic în figura \ref{fig:qbh_optimal_gamma_vs_total_energy}. Exponenții critici variază între \(0.6\) și \(0.7\), cu o valoare medie de \(0.66 \pm 0.06\). Acest tipar nu a mai fost observat anterior în literatură, sugerând posibilitatea identificării unui mecanism de universalitate în tranzițiile la haos pentru acest tip de sisteme conservative.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\linewidth]{reports/2026/images/1/qbh_optimal_gamma_vs_total_energy}
+    \caption{Exponentul critic \(\gamma\), potrivit optim pe tranziția la haos a exponenților Lyapunov maximali ai sistemului Hamiltonian, în funcție de energia totală a sistemului}
+    \label{fig:qbh_optimal_gamma_vs_total_energy}
+\end{figure}
+
+Referitor la colaborarea cu doamna profesor Mădălina Boca, am continuat să progresez cu implementarea codului de calcul numeric al integralelor oscilatorii care definesc valoarea potențialului electromagnetic scalar și vectorial (în domeniul frecvenței). Rezultatul unei simulări se poate vedea în figura \ref{fig:electrodynamics_scalar_potential_vs_x_0}. Codul de simulare nu poate calcula încă toate observabilele relevante pentru cercetarea noastră și nici nu modelează încă foarte bine realitatea (detectorul este doar 1D, particulele se mișcă pe niște traiectorii idealizate), dar este un punct de pornire promițător. Rezultatul simulării (distribuția conică a câmpului scalar) se potrivește cu predicțiile teoretice și simulările realizate de Toma \emph{et al.} în lucrarea ``\textit{Coherent nonlinear Thomson scattering of Laguerre--Gauss beams on an electron sheet}''.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\linewidth]{reports/2026/images/1/electrodynamics_scalar_potential_vs_x_0}
+    \caption{Valoarea absolută a potențialului scalar \(\phi\) în funcție de poziția punctului de observație \(x_0\) pe un detector transversal, paralel cu planul de mișcare al electronilor accelerați de laser.}
+    \label{fig:electrodynamics_scalar_potential_vs_x_0}
+\end{figure}
+
+Am reușit să adaptez programul pentru a rula și pe plăcile video din ACC, folosind biblioteca \href{https://cupy.dev/}{CuPy}. Am crescut astfel viteza de calcul de 10-50 de ori, cu posibilitatea de a obține performanțe și mai mari în viitor, dacă optimizez codul.
+
+În ceea ce privește îmbunătățirea timpilor de execuție pentru algoritmii iterativi de rezolvare a sistemelor liniare mari, am reușit să implementez un experiment funcțional în care metoda propusă de noi întrece metoda clasică. Mai precis, pe o problemă de chimie computațională (predicția suprafeței de energie potențială), tradusă într-o problemă de \emph{kernel ridge regression}, metoda noastră de precondiționare iterativă în paralel, combinată cu metoda gradienților conjugați, este mai rapidă cu 10-20\% decât metoda clasică de a calcula mai întâi matricea de precondiționare și de-abia apoi de a da drumul la algoritmul de rezolvare iterativă a sistemului. Codul rulează în două procese, din care cel principal rezolvă sistemul folosind placa video (prin PyKeOps), iar cel secundar calculează iterativ descompunerea Cholesky cu pivotare (pe CPU).
+
+\textbf{Observațiile conducătorului științific}:
+
+\makereportpostamble{30 ianuarie 2026}

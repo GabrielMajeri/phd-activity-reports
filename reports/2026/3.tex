@@ -1,0 +1,165 @@
+\makereporttitle{2026}{martie}
+
+\makereportpreamble
+
+În această lună, am realizat progrese bune pe toate direcțiile de cercetare pe care lucrez. De asemenea, am participat și la câteva dintre activitățile obligatorii cerute de noile reglementări privind studiile de doctorat.
+
+După ce luna trecută am reușit să obțin potriviri foarte bune pentru ipoteza de tip lege-putere pe tranziția critică la haos în sistemul Hamiltonian cuadrupol bosonic, domnul profesor Băran a propus să studiez aceeași tranziție și în cadrul sistemului Hénon–Heiles, un model simplificat al dinamicii stelelor dintr-o galaxie. Acesta a fost introdus în anii '60 și este un exemplu clasic de haos într-un sistem Hamiltonian. De asemenea, fiind foarte bine studiat în literatură, ar trebui să fie ușor de analizat ca punct de plecare pentru o comparație exhaustivă a celor două modele. Obiectivul nostru este să identificăm tipare de \textbf{universalitate} în aceste sisteme, imitând rezultatele lui Feigenbaum.
+
+În acest sens, am continuat să dezvolt și să adaptez codurile de simulare numerică pe care le-am început luna trecută, obținând astfel suficiente date pentru a putea face o analiză pe comportamentul critic al tranziției la haos în sistemul Hénon–Heiles. O traiectorie obținută cu codul de integrare numerică (integrator simplectic de ordinul 4) este reprezentată grafic în figura \ref{fig:henon_heiles_trajectory}; aceasta are un tipar destul de regulat, deoarece valoarea energiei totale și a parametrului \(\lambda\) sunt relativ mici. În figura \ref{fig:henon_heiles_mle_vs_lambda_plot} am reprezentat exponenții Lyapunov maximali în funcție de parametrul de control \(\lambda\) (pe care îl voi nota mai departe \(C\), pentru a evita confuziile), la diferite valori constante ale energiei totale. Se poate vedea creșterea bruscă a lui \(\lambda_{\text{max}}\), în momentul în care torii invarianți se destramă și apar rezonanțe haotice în spațiul fazelor. Am potrivit ipoteze de tip \textit{power law} peste aceste tranziții, de forma
+\[
+    \lambda_{\text{max}} = \lambda_0 + \lambda_0 \left(C - C_0\right)^{\gamma}
+\]
+unde \(C\) reprezintă parametrul de control (anterior notat cu \(\lambda\)), \(C_0\) este punctul critic la care începe tranziția la haos, \(\lambda_0\) este valoarea exponentului Lyapunov maximal la începutul acestei tranziții iar \(\gamma\) reprezintă un exponent care reflectă viteza cu care se sparg torii invarianți din spațiul fazelor, corespunzător cu teorema KAM. Rezultatele potrivirilor sunt rezumate în figura \ref{fig:henon_heiles_optimal_gamma_vs_total_energy}. La fel ca în cazul sistemului cuadrupol bosonic, se poate observa cum exponentul se apropie de o limită asimptotică la energii înalte, cu valori mai mari la energii mici. Totuși, este surprinzător că valorile obținute nu se potrivesc cu cele pentru QBH.
+
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}{0.5\textwidth}
+        \centering
+        \includegraphics[width=1\linewidth]{reports/2026/images/3/henon_heiles_trajectory_xy_plane.pdf}
+        \caption{Traiectorie reprezentată grafic în planul \(x\)-\(y\)}
+    \end{subfigure}%
+    \begin{subfigure}{0.5\textwidth}
+        \centering
+        \includegraphics[width=1\linewidth]{reports/2026/images/3/henon_heiles_trajectory.pdf}
+        \caption{Proiecțiile pe axe ale traiectoriei}
+    \end{subfigure}%
+    \caption{Reprezentări grafice ale unei traiectorii în spațiul fazelor al sistemului Hénon–Heiles.}
+    \label{fig:henon_heiles_trajectory}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\linewidth]{reports/2026/images/3/henon_heiles_maximal_lyapunov_exponents_vs_parameter_at_varying_total_energies.pdf}
+    \caption{Evoluția exponentului Lyapunov maximal versus parametrul de control \(\lambda\) în cazul sistemului Hénon–Heiles, la diferite energii totale.}
+    \label{fig:henon_heiles_mle_vs_lambda_plot}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\linewidth]{reports/2026/images/3/henon_heiles_optimal_gamma_vs_total_energy.pdf}
+    \caption{Exponenții tranzițiilor critice la haos în sistemul Hénon–Heiles, în funcție de energia totală a sistemului.}
+    \label{fig:henon_heiles_optimal_gamma_vs_total_energy}
+\end{figure}
+
+Din dorința de a înțelege motivul acestei neconcordanțe, am început să refac graficele și analiza anterioară pentru sistemul Hamiltonian cuadrupol bosonic la valori ale parametrului \(D\) mai mici. Anterior am lucrat cu \(D = 0.4\), dar am investigat acum și \(D \in \Set{ 0.2, 0.1, 0.01, 0.0 }\). Adaptând codul de simulare și analiză la noile configurații, am reușit să observ comportamentele exponenților critici, așa cum sunt ele reprezentate grafic în figura \ref{fig:qbh_optimal_gamma_vs_total_energy_varying_d}. Din păcate, codul de integrare numerică are tendința să diveargă la valori mici ale lui \(D\) (pentru \(D = 0\), ar trebui să obținem potențialul Hénon–Heiles cu o mică scalare), deoarece potențialul devine nemărginit. Prin urmare, obiectivul meu în perioada următoare este să reanalizez problema și să regândesc codul de generare de condiții inițiale și de integrare numerică, pentru a găsi o cale de a face o analiză comparativă între cele două sisteme, folosindu-mă de parametrul adiabatic \(D\) ca un coeficient de perturbare.
+
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}{0.5\textwidth}
+        \centering
+        \includegraphics[width=1\linewidth]{reports/2026/images/3/qbh_d_0.4_optimal_gamma_vs_total_energy.pdf}
+        \caption{\(D = 0.4\)}
+    \end{subfigure}%
+    \begin{subfigure}{0.5\textwidth}
+        \centering
+        \includegraphics[width=1\linewidth]{reports/2026/images/3/qbh_d_0.2_optimal_gamma_vs_total_energy.pdf}
+        \caption{\(D = 0.2\)}
+    \end{subfigure}
+    \begin{subfigure}{0.5\textwidth}
+        \centering
+        \includegraphics[width=1\linewidth]{reports/2026/images/3/qbh_d_0.1_optimal_gamma_vs_total_energy.pdf}
+        \caption{\(D = 0.1\)}
+    \end{subfigure}%
+    \begin{subfigure}{0.5\textwidth}
+        \centering
+        \includegraphics[width=1\linewidth]{reports/2026/images/3/qbh_d_0.01_optimal_gamma_vs_total_energy.pdf}
+        \caption{\(D = 0.01\)}
+    \end{subfigure}
+    \caption{Dependența exponentului critic de energia totală, pentru diferite valori fixate ale lui \(D\). Pe măsură ce \(D\) se apropie de \(0\), începem să nu mai avem o a doua tranziție la haos, iar eventual potențialul devine nemărginit (deci vom avea și divergențe numerice).}
+    \label{fig:qbh_optimal_gamma_vs_total_energy_varying_d}
+\end{figure}
+
+Pe partea de simulări numerice de electrodinamică, în special cu aplicații în studiul luminii helicoidale, am continuat să citesc despre fascicule Gaussiene și moduri Laguerre-Gauss. Pentru a începe cu niște coduri mai simple, am simulat mișcarea relativistă a unui electron accelerat de o undă plană care se deplasează în direcția \(+z\), dată de ecuațiile
+\begin{gather*}
+    E_x (z, t) = E_0 \cos \left(k z - \omega t\right) \\
+    B_y (z, t) = B_0 \cos \left(k z - \omega t\right)
+\end{gather*}
+Am calculat tensorul de câmp electromagnetic prin formula
+\[
+    F^{\mu \nu} = \begin{pmatrix}
+        0 & -E_x/c & -E_y/c & -E_z/c \\[0.1em]
+        E_x/c & 0 & -B_z & B_y \\[0.1em]
+        E_y/c & B_z & 0 & -B_x \\[0.1em]
+        E_z/c & -B_y & B_x & 0
+    \end{pmatrix}
+\]
+iar apoi am integrat numeric ecuațiile de mișcare, definite pe 4-vectori (în sistemul de referință al laboratorului, dar relativ la timpul propriu al particulei):
+\begin{gather*}
+    \frac{\diff x^{\mu}}{\diff \tau} (\tau) = u^{\mu} (\tau) \\[0.5em]
+    \frac{\diff u^{\mu}}{\diff \tau} (\tau) = \frac{q}{m} u^{\rho} (\tau) g_{\rho \nu} F^{\mu \nu} \left(x^{\sigma} (\tau)\right)
+\end{gather*}
+Traiectoria rezultată se poate vedea în figura \ref{fig:electrodynamics_plane_wave_electron_trajectories}. Rămâne să fac mai multe simulări și teste pentru mișcarea particulelor într-un câmp laser, eventual folosind câmpul electromagnetic descris de un fascicol Gaussian sau Laguerre-Gauss. De asemenea, trebuie să văd cum aș putea calcula eficient și radiația re-emisă de acestea, cu o precizie suficient de mare cât să pot calcula și momentul cinetic unghiular purtat de fotoni.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.9\linewidth]{reports/2026/images/3/electrodynamics_plane_wave_electron_trajectories.pdf}
+    \caption{Proiecțiile 4-vectorilor care formează o traiectorie a unui electron mișcându-se relativist în câmpul electromagnetic de tip undă plană.}
+    \label{fig:electrodynamics_plane_wave_electron_trajectories}
+\end{figure}
+
+Luna aceasta am reușit să reorganizez și să îmbunătățesc substanțial codul de precondiționare iterativă în paralel. Am extras implementarea experimentală într-un modul separat de Python, care ar putea fi folosit pe viitor ca o bibliotecă externă. De asemenea, cu această ocazie am separat codul în mai multe clase și funcții, și am implementat și o variantă care folosește \textit{multithreading} în loc de \textit{multiprocessing} (dar care necesită dezactivarea GIL din Python pentru a fi eficientă). Totodată, am reușit să rulez astfel și mult mai multe teste comparative, care relevă avantajele acestei metode peste abordarea clasică (figura \ref{fig:pcg_solver_times}).
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.9\linewidth]{reports/2026/images/3/pcg_solver_times.pdf}
+    \caption{Comparație între timpii de rezolvare a unei probleme liniare mari (\textit{kernel ridge regression} aplicat pe o problemă din chimia computațională) folosind metoda gradienților conjugați împreună cu precondiționare bazată pe descompunerea Cholesky parțială cu pivotare. Metoda de precondiționare iterativă în paralel reușește să întreacă toate variantele care construiesc matricea de precondiționare înainte de începerea algoritmului de rezolvare a sistemului.}
+    \label{fig:pcg_solver_times}
+\end{figure}
+
+În ceea ce privește fizica particulelor, am continuat colaborarea cu DFPE-IFIN. Am reușit în sfârșit să obțin niște date rezonabile din simulările Monte Carlo ale coliziunilor în viitorul HL-LHC, folosind programul MadGraph. Acestea m-au ajutat să antrenez un discriminator bazat pe învățarea automată (arbori de decizie, \textit{random forest} și \textit{boosted decision trees}) care să poată identifica procesul semnal pe care îl căutăm printre procesele de fundal. Unul dintre procesele studiate (care este în afara Modelului Standard) este reprezentat grafic în figura \ref{fig:diagram_suu_chi_chi_wb_zt}. Rezultatele numerice (obținute înmulțind rata de detecție a acelui tip de proces cu secțiunea de producere și luminozitatea integrată estimată pentru HL-LHC) sunt promițătoare, dar încă nu sunt suficient de bune pentru publicare. Rămâne să revizuiesc procedura de generare a datelor și să îmbunătățesc modelele de ML folosite, până ajung la niște rezultate mai precise.
+
+% Suu -> chi chi -> Wb Zt
+\begin{figure}
+    \centering
+    \begin{tikzpicture}
+      \begin{feynman}
+        % This is the left endpoint of the S_{uu} dashed line
+        \vertex (z1);
+        % This is the right endpoint of the S_{uu} dashed line
+        \vertex [right=1.5cm of z1] (z2);
+        \vertex [above left=0.75cm and 1.5cm of z1] (e1) {\(u\)};
+        \vertex [below left=0.75cm and 1.5cm of z1] (e2) {\(u\)};
+
+        % The two chi's
+        \vertex [above right=0.8cm and 1cm of z2] (x1);
+        \vertex [below right=0.8cm and 1cm of z2] (x2);
+    
+        \vertex [above right=0.4cm and 1cm of x1] (w+) {\(W^{+}\)};
+        \vertex [below right=0.2cm and 1cm of x1] (b) {\(b\)};
+
+        \vertex [above right=0.2cm and 1cm of x2] (z) {\(Z\)};
+        \vertex [below right=0.4cm and 1cm of x2] (t) {\(t\)};
+
+        \diagram* {
+          (e1) -- [fermion] (z1),
+          (e2) -- [fermion] (z1),
+    
+          (z1) -- [scalar, edge label=\(S_{uu}\)] (z2),
+        
+          (z2) -- [fermion, edge label=\(\chi\)] (x1),
+          (z2) -- [fermion, edge label'=\(\chi\)] (x2),
+    
+          (x1) -- [boson] (w+),
+          (x1) -- [fermion] (b),
+          
+          (x2) -- [boson] (z),
+          (x2) -- [fermion] (t)
+        };
+      \end{feynman}
+    \end{tikzpicture}
+    \caption{Diagrama Feynman pentru dezintegrarea particulei ipotetice \(S_{uu}\) în două particule \(\chi\), care la rândul lor se dezintegrează în \(W^+ b\) și \(Z t\).}
+    \label{fig:diagram_suu_chi_chi_wb_zt}
+\end{figure}
+
+% TO DO
+
+\textbf{Activități obligatorii}
+
+Pe 10 martie, am participat la workshop-ul online ,,Descoperă-ți criticul interior --- gândirea pozitivă învinge``, susținut de psiholog Irina Drăgan din cadrul \href{https://ciocp.unibuc.ro/}{Departamentului de Consiliere și Orientare pentru Carieră} a Universității din București.
+
+Pe data de 15 martie am participat la conferința \href{https://younichemxai.org/}{Youni Chem x AI}, unde am ținut o prezentare introductivă despre inteligența artificială, învățarea automată și aplicații în științele naturale (chimie, fizică, biologie). Scopul acestei conferințe este de a populariza știința în rândul elevilor talentați din București și din zonele înconjurătoare.
+
+\textbf{Observațiile conducătorului științific}:
+
+\makereportpostamble{30 martie 2026}

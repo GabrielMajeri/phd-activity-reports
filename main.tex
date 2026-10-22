@@ -1,0 +1,127 @@
+\documentclass[a4paper, 12pt]{article}
+
+% Margini configurabile pentru pagină
+\usepackage{geometry}
+\geometry{a4paper,includehead,includefoot,top=0cm,bottom=5cm}
+
+% Inserare de imagini
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+
+% Hyperlink-uri interactive
+\usepackage{hyperref}
+
+\hypersetup{
+    colorlinks,
+    urlcolor=blue,
+    linkcolor=blue
+}
+
+% Antete customizabile
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+% Suport pentru comentarea secțiunilor de cod
+\usepackage{verbatim}
+
+% Selecție lărgită de font-uri
+\usepackage{fontspec}
+
+% Schimbă fontul implicit
+\setmainfont{TeX Gyre Termes}
+
+% Suport pentru notație Dirac
+\usepackage{braket}
+
+% Folosește rânduri libere în loc de alineate pentru indentare
+\usepackage{parskip}
+
+% Legende de imagini mai customizabile
+\usepackage{caption}
+
+% Pentru subfiguri
+\usepackage{subcaption}
+
+% Comenzi matematice uzuale
+\usepackage{amsmath}
+
+% Comenzi matematice avansate
+\usepackage{mathtools}
+
+% Codifică simbolurile matematice folosind caractere Unicode
+\usepackage[
+    warnings-off={mathtools-colon,mathtools-overbracket}
+]{unicode-math}
+
+% Grafice și diagrame
+\usepackage{tikz}
+% Diagrame Feynman
+\usepackage[compat=1.1.0]{tikz-feynman}
+
+% Referințe mai inteligente
+\usepackage{cleveref}
+\newcommand{\crefrangeconjunction}{--}
+\newcommand{\crefpairconjunction}{ și~}
+\newcommand{\creflastconjunction}{ și~}
+
+% Suport pentru limba română
+\usepackage{polyglossia}
+\setdefaultlanguage{romanian}
+
+% Stil românesc pentru ghilimele
+\usepackage{csquotes}
+
+% Golește antetul predefinit
+\fancyhead{}
+% Golește subsolul predefinit
+\fancyfoot{}
+% Adaugă imaginea cu antetul standard
+\setlength\headheight{104pt}
+\chead{\makebox[\headwidth][c]{\includegraphics{header}}}
+\cfoot{\thepage}
+% Ascunde linia orizontală de sub antet
+\renewcommand{\headrulewidth}{0pt}
+
+% Comenzi definite pentru generarea facilă a raportului
+\input{commands}
+
+\begin{document}
+
+% \input{reports/2023/10}
+% \input{reports/2023/11}
+% \input{reports/2023/12}
+% \input{reports/2024/1}
+% \input{reports/2024/2}
+% \input{reports/2024/3}
+% \input{reports/2024/4}
+% \input{reports/2024/5}
+% \input{reports/2024/6}
+% \input{reports/2024/7}
+% \input{reports/2024/8}
+% \input{reports/2024/9}
+% \input{reports/2024/10}
+% \input{reports/2024/11}
+% \input{reports/2024/12}
+% \input{reports/2025/1}
+% \input{reports/2025/2}
+% \input{reports/2025/3}
+% \input{reports/2025/4}
+% \input{reports/2025/5}
+% \input{reports/2025/6}
+% \input{reports/2025/7}
+% \input{reports/2025/8}
+% \input{reports/2025/9}
+% \input{reports/2025/10}
+% \input{reports/2025/11}
+% \input{reports/2025/12}
+% \input{reports/2026/1}
+% \input{reports/2026/2}
+% \input{reports/2026/3}
+% \input{reports/2026/4}
+% \input{reports/2026/5}
+% \input{reports/2026/6}
+% \input{reports/2026/7}
+% \input{reports/2026/8}
+\input{reports/2026/9}
+
+\end{document}

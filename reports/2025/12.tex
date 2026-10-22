@@ -1,0 +1,42 @@
+\makereporttitle{2025}{decembrie}
+
+\makereportpreamble
+
+În această lună, am reușit fie să înțeleg mai bine problemele de cercetare pe care lucrez, în unele cazuri făcând chiar progres prin obținerea unor rezultate noi.
+
+Pentru studiul sistemului descris de Hamiltonianul cuadrupol bosonic, am curățat și reorganizat mare parte din codul de simulare numerică și de analiză de date. Am finalizat tranziția de la Julia la Python și am eliminat fragmentele vechi de cod. În paralel, mi-am aprofundat cunoștințele despre sisteme complexe și dinamică neliniară. Am început să parcurg materiale de la MIT OpenCourseWare, referitoare la fizică cuantică, și am citit mai multe articole și fragmente de cărți despre sisteme dinamice. În acest fel, am reușit să înțeleg mai bine sistemul studiat, precum și unele aspecte ale simulărilor care trebuie regândite. De asemenea, am simplificat și îmbunătățit codul de calcul simbolic pentru prelucrarea Hamiltonianului cuantizat.
+
+În ceea ce privește colaborarea cu doamna profesor Mădălina Boca, pentru simularea numerică a radiației emise de electroni accelerați de laser, am reușit să înțeleg contextul fizic al problemei studiate și să implementez în Python simularea numerică a traiectoriei unor electroni aflați în câmp laser, precum și să testez metode de a calcula distribuția spectrală a potențialului scalar și a celui vector (distribuții date de ecuațiile de mai jos), până la primul ordin în \(1/\abs{x_0}\). Sistemul fizic studiat poate fi văzut reprezentat schematic în Figura \ref{fig:electrodynamics_simulation_setup}.
+
+\begin{gather*}
+    \Phi\left(x_0, \omega\right) = \frac{1}{2 \pi} \frac{e_0 e^{i \frac{\omega}{c} \abs{x_0}}}{4 \pi \epsilon_0} \int_{-\infty}^{+\infty} \diff \tau \gamma e^{i \left(\omega t(\tau) - \frac{\omega}{c} n_0 \cdot r_0 (\tau)\right)} \left[\frac{1}{\abs{x_0}} + \symcal{O}\left(\frac{1}{\abs{x_0}^2}\right)\right] \\[1em]
+    A\left(x_0, \omega\right) = \frac{1}{2 \pi} \frac{e_0 e^{i \frac{\omega}{c} \abs{x_0}}}{4 \pi \epsilon_0} \int_{-\infty}^{+\infty} \diff \tau \gamma e^{i \left(\omega t(\tau) - \frac{\omega}{c} n_0 \cdot r_0 (\tau)\right)} \beta(\tau) \left[\frac{1}{\abs{x_0}} + \symcal{O}\left(\frac{1}{\abs{x_0}^2}\right)\right]
+\end{gather*}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\linewidth]{reports/2025/images/12/electrodynamics_simulation_setup}
+    \caption{Ansamblu de electroni care se învârt pe mici orbite circulare, dispuse concentric față de origine, observați de un detector aflat la distanță mare pe verticală.}
+    \label{fig:electrodynamics_simulation_setup}
+\end{figure}
+
+Spre finalul lunii am început să parcurg mai multe cărți și materiale online despre electrodinamică și teoria relativității restrânse, relevante pentru acest studiu. Am citit, de asemenea, articole de cercetare și resurse despre evaluarea numerică a integralelor puternic oscilatorii, folosind metode de tip Filon sau Levin.
+
+Împreună cu un alt coleg de la doctorat, Andrei Rădoacă-Dogaru, încercăm să studiem o extensie a modelului de \emph{Brane Gas Cosmology} (BGC). Andrei a propus în teza sa de doctorat un model în care este compactificată inclusiv dimensiunea temporală a universului. În acest sens, am început să mă familiarizez cu literatura și terminologia din domeniu, precum și cu metodele de integrare numerică pentru simulările cosmologice (rezolvarea ecuațiilor de tip Friedmann). O soluție obținută pentru un astfel de model poate fi văzută în figura \ref{fig:brane_gas_cosmological_model}. Rămâne să încerc să implementez și modificările propuse de Andrei, care complică substanțial rezolvarea ecuațiilor de mișcare.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.9\linewidth]{reports/2025/images/12/brane_gas_cosmological_model}
+    \caption{}
+    \label{fig:brane_gas_cosmological_model}
+\end{figure}
+
+Cu scopul de a testa în practică ideea de rafinare iterativă a matricii de precondiționare folosită pentru rezolvarea sistemelor liniare mari, o temă de cercetare la care lucrez împreună cu domnul profesor Cristian Rusu, am identificat și studiat în profunzime o problemă de chimie computațională: predicția suprafeței de energie potențială (PES) pe baza configurației atomice a unei molecule. Folosind seturile de date oferite de proiectul \href{https://www.sgdml.org/}{sGDML}, am testat câțiva algoritmi predefiniți de învățare automată (regresie liniară, \textit{ridge regression}, \textit{support vector machine}, regresie liniară cu metoda nucleu, \textit{kernel ridge regression}) și am rezolvat problema cu un grad ridicat de acuratețe. Rămâne să implementez de mână \textit{Kernel Ridge Regression} și să rezolv sistemul liniar rezultat folosind metoda gradienților conjugați, precondiționată cu descompunerea Cholesky iterativă parțială, respectiv cu strategia noastră de precondiționare iterativă.
+
+Pe partea de matematică, luna aceasta am avut oportunitatea să citesc secțiuni din mai multe cărți despre noțiuni fundamentale din topologie și geometrie diferențială (conexitate, compacitate, fibratul de cadre etc), atât în scopuri fizice (pentru teoriile de etalonare), cât și pentru studiul spațiilor Berkovich, o temă de cercetare în teoria numerelor pe care lucrez cu câțiva cercetători de la IMAR.
+
+Pe lângă activitatea de cercetare, în calitate de responsabil tehnic al Centrului de Calcul Avansat al Universității, am participat la instalarea sistemului de \textit{backup \& restore} achiziționat prin EDIS și am realizat evaluarea și recepția calitativă a acestuia. În plus, am actualizat software-ul de sistem și am efectuat teste de stabilitate cu prilejul unei ferestre de mentenanță de câteva zile, impusă de necesitatea optimizării soluției de răcire de către furnizor.
+
+\textbf{Observațiile conducătorului științific}:
+
+\makereportpostamble{29 decembrie 2025}

@@ -1,0 +1,41 @@
+\makereporttitle{2024}{februarie}
+
+\makereportpreamble
+
+\textbf{Rezumat:}
+
+În această lună am aprofundat studiul mai multor zone ale fizicii moderne (nucleară, cuantică, cosmologie), preponderent dintr-o perspectivă computațională. Pe partea de cercetare, am continuat să lucrez pe \emph{quantum chaos}, progresând cu proiectul propus de domnul profesor Băran. În același timp, am început să investighez posibilitatea utilizării metodelor de învățare automată, în particular \emph{Physics-Informed Neural Networks} (PINNs) pentru rezolvarea ecuațiilor cu derivate parțiale care modelează diferite sisteme fizice.
+
+\vspace{0.5em}
+
+\textbf{Activitate de cercetare:}
+
+Am extins codul de calcul simbolic pe care am început să lucrez în luna precedentă, dezvoltând un pachet independent pentru oscilatori armonici cuantici multidimensionali (cazul izotrop). În acest scop, m-am familiarizat cu modul intern de organizare al bibliotecii \href{https://www.sympy.org/en/index.html}{SymPy}, generalizând abordarea din lucrarea ,,\href{https://digitalcommons.calpoly.edu/cgi/viewcontent.cgi?article=1072&context=physsp/}{Quantum Programming in Python}'' a lui Matthew Hoff. Pachetul permite cuantizarea Hamiltonianului provenit din modelul clasic, rescrierea acestuia în termeni de operatori de creare/anihilare (\(\hat{a}^{\dagger}\) și \(\hat{a}\)) precum și aducerea expresiei la o formă normală, prin aplicarea relațiilor canonice de comutare.
+
+Cu ajutorul acestor coduri, am reușit să obțin simbolic expresia Hamiltonianului cuantizat. Următorul pas va fi să compar rezultatele numerice obținute de mine cu cele din lucrarea ,,Fingerprints of classical chaotic dynamics in quantum behavior'' a lui S.~Micluța-Câmpeanu, M.C.~Raportaru, A.I.~Nicolin și V.~Băran, publicată în 2018 în \emph{Romanian Reports in Physics}, volumul 70, articolul nr.~105.
+
+Inspirat de discuțiile din cadrului seminarului de EDP (menționat mai jos), am început să studiez rezolvarea numerică a ecuațiilor cu derivate parțiale folosind rețele neurale (\emph{Physics-Informed Neural Networks}) pentru modelarea soluțiilor. În acest scop, m-am familiarizat cu biblioteca \href{https://deepxde.readthedocs.io/en/latest/}{DeepXDE}, dezvoltată de Lu Lu în 2018-2020 în timpul doctoratului său la Brown University. Am validat abordarea rezolvând ecuația Poisson pe domenii din \(\reals^1\) și \(\reals^2\).
+
+\vspace{0.5em}
+
+\textbf{Activitate de documentare:}
+
+Având în vedere subiectele abordate, luna aceasta am aprofundat mai multe noțiuni de analiză funcțională (teorie spectrală, transformata Fourier) și de fizică nucleară (\emph{shell model}, \emph{liquid drop model}). M-am familiarizat cu câteva noțiuni mai avansate ale limbajului Python, precum și cu utilizarea bibliotecii \href{https://github.com/JuliaGPU/CUDA.jl}{CUDA.jl} pentru a rula computații pe placa video folosind Julia.
+
+Am avut o discuție cu Sergiu Moroianu, cercetător asociat la Institutul de Matematică al Academiei Române (IMAR), pentru a clarifica câteva aspecte de geometrie riemanniană  și teorie spectrală pe varietăți (fluxuri geodezice, valorile proprii ale operatorului Laplace-Beltrami, legea lui Weyl etc.) necesare pentru a înțelege mai bine \href{https://people.maths.bris.ac.uk/~majm/bib/3ecm.pdf}{conjectura Berry-Tabor}, care se leagă de cercetarea mea pe haos cuantic.
+
+\vspace{0.5em}
+
+\textbf{Cursuri și seminare științifice:}
+
+Pe parcursul acestei luni am participat în mod regulat la seminarul ,,\emph{Analysis \& PDEs}'', organizat de Liviu Ignat și Cristian Cazacu la IMAR. Am participat și la prelegerea exploratorie „Dynamical aspects of classical and quantum multifield cosmological models” din cadrul \href{https://events.theory.nipne.ro/gap/index.php/seminar}{Geometry and Physics Seminar}, organizat de Departamentul de Fizică Teoretică al IFIN-HH în colaborare cu IMAR. Totodată, am intrat în comunitatea \href{https://events.theory.nipne.ro/gap/index.php/student-homepage}{Trans-Carpathian Student Circle}.
+
+Am finalizat cursul \href{https://juliaacademy.com/p/intro-to-julia}{Introduction to Julia} de pe JuliaAcademy, întregindu-mi cunoștințele despre acest limbaj.
+
+\vspace{0.5em}
+
+\textbf{Observațiile conducătorului științific}:
+
+\vspace{3em}
+
+\makereportpostamble{29 februarie 2024}

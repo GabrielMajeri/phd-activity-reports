@@ -1,0 +1,50 @@
+\makereporttitle{2025}{octombrie}
+
+\makereportpreamble
+
+În această lună, am continuat să lucrez pe direcțiile de cercetare inițiate și să rafinez rezultatele obținute, încercând să justific în mod riguros toate deciziile de implementare făcute, realizând mai multe experimente. Totodată, am încercat să echilibrez activitatea de cercetare cu cea de predare, având în vedere că a început și primul semestru al anului universitar 2025--2026.
+
+Pentru studiul apariției haosului în Hamiltonianul cuadrupol bosonic, am finalizat rescrierea codului de simulare numerică în Python. Cu această ocazie, i-am reorganizat structura, făcându-l mai ușor de citit și înțeles, și am dezvoltat și câteva teste automate. Am observat în cadrul unor experimente că algoritmul meu de calculare de traiectorii (i.e.~integrare numerică a ecuațiilor de mișcare) nu conservă energia, așa că am implementat o schemă de integrare simplectică de ordinul 4, descrisă într-o \href{https://cloudfront.escholarship.org/dist/prd/content/qt35h9v2k9/qt35h9v2k9.pdf}{lucrare} a lui Forest și Ruth din 1989. Mai mult, am adăugat și o metodă nouă de generare a condițiilor inițiale (eșantionate omogen pe curba de echipotențial a sistemului). Paralelizând codul de calcul al traiectoriilor și al exponenților Lyapunov, bazat pe metoda lui Benettin et al.~din anii '80, am reușit să obțin estimări numerice pentru exponentul Lyapunov (maximal) local, pentru o plajă largă de condiții inițiale și valori ale parametrilor de control (\(B\) și energia totală), estimări pe care le-am reprezentat grafic în Figura \ref{fig:lyapunov_exponents_3d_plot}.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.6\linewidth]{reports/2025/images/10/lyapunov_exponents_3d_plot_new_python_code}
+    \caption{}
+    \label{fig:lyapunov_exponents_3d_plot}
+\end{figure}
+
+Aceste date confirmă comportamentul pe care l-am observat acum câteva luni: la o energie totală fixată, exponentul Lyapunov maximal (maxim relativ la toate condițiile inițiale) depinde de valoarea parametrului \(B\) printr-un \emph{power law}, \(\lambda_{\text{max}} \propto \left(B - B_0\right)^{\gamma}\). Universalitatea acestui comportament se poate vedea în Figura \ref{fig:maximal_lyapunov_exponent_vs_B}. Întâmpin însă dificultăți cu determinarea/potrivirea parametrului optim pentru această lege de creștere; este o problemă pe care mă voi concentra în perioada următoare.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.7\linewidth]{reports/2025/images/10/maximal_lyapunov_exponent_vs_B_new_code}
+    \caption{}
+    \label{fig:maximal_lyapunov_exponent_vs_B}
+\end{figure}
+
+Referitor la celelalte direcții de cercetare, mi-am alocat mai mult timp să revizuiesc literatura referitoare la problemele cu care mă confrunt. Am citit despre metodele nucleu (\textit{kernel methods}) și cum duc acestea la rezolvarea sistemelor liniare mari, determinarea numerică a integralelor oscilatorii (care apar în simularea numerică a radiației emise de particule cu sarcină care se mișcă accelerat), programare în FORTRAN (am găsit mai multe coduri numerice care mă vor ajuta și a fost nevoie să învăț limbajul), cosmologie și rezolvarea numerică a ecuațiilor cosmologice (de tip Friedmann), spații Berkovich și norme nearhimedeene.
+
+În a doua săptămână din lună am participat la evenimentul științific \emph{Autumn School
+``Spectra of Analysis in Geometry and Physics''}, organizat de Institutul Matematic al Universității din Göttingen. Această deplasare mi-a oferit oportunitatea să-mi prezint activitatea în fața unui grup de cercetători din domeniu (în cadrul sesiunii de postere), să împărtășesc idei și experiențe cu studenți și profesori din alte țări și să stabilesc legături cu doctoranzi, post-doctoranzi și cercetători consacrați din străinătate. Totodată, în cadrul sesiunii de postere am avut câteva conversații interesante cu alți cercetători interesați de domeniu și am primit și niște idei de îmbunătățire destul de interesante, pe care voi încerca să le implementez.
+
+În cadrul acestui eveniment s-au desfășurat și mai multe cursuri/prelegeri:
+\begin{itemize}
+    \item ``\textit{The spectrum of geometric operators on noncompact manifolds}'', ținut de \href{https://mas.ucy.ac.cy/nelia/}{Nelia Charalambous} de la Universitatea din Cipru;
+
+    \item ``\textit{Spectral theory on spacetimes}'', ținut de \href{https://www.maphy.uni-hannover.de/en/faculty/management-and-organization/team-detail/institute-of-analysis-pkkpg/professors-1/prof-dr-alexander-strohmaier?tx_t3luhepv_t3luhepvoe%5BdisablePersHomepages%5D=0}{Alexander Strohmaier} de la Universitatea din Hanovra;
+
+    \item ``\textit{L2-cohomology of complete hyper-Kähler metrics}'', ținut de \href{http://profmath.uqam.ca/~rochon/}{Frédéric Rochon} de la Universitatea din Quebec;
+
+    \item ``\textit{The high energy behavior of Laplace eigenfunctions}'', ținut de \href{https://www.ucl.ac.uk/~ucahalk/}{Jeffrey Galkowski} de la University College London.
+\end{itemize}
+Pentru această deplasare, am beneficiat de sprijin financiar din partea Universității din București, ca parte din grantul doctoral.
+
+În ceea ce privește administrarea infrastructurii din cadrul Centrului de Calcul Avansat al Universității din București, ACC-UB, în această lună am început să acordăm acces mai multor profesori și cercetători din Universitate la sistemul de calcul paralel, la solicitarea conducerii UB (având în vedere că procedura de solicitare acces ACC este încă în lucru). Ne-am dat seama că infrastructura de hiperconvergență (care folosește tehnologii de virtualizare de la VMware) nu era la zi, așa că m-am ocupat de actualizarea la vSphere 9 și ESXi 9, precum și de configurarea componentelor de SDDC Manager (necesar pentru VCF), NSX (pentru networking virtualizat, necesar pentru Kubernetes prin Tanzu) și VMware Cloud Foundations (Operations, Automation, Collector etc). În acest moment, putem să beneficiem de toate funcționalitățile incluse în licențele achiziționate de către UB.
+
+Pe tot parcursul lunii am participat la diferite seminare științifice, prezentări și cursuri. Am fost la seminarul de geometrie care se desfășoară la IMAR, unde Dan Burghelea (de la Ohio State University) a prezentat legăturile dintre coomologia Novikov și dinamica câmpurilor de vectori (echivalența între proprietățile topologice și definițiile analitice). Am mers la cursurile și seminarele de \textit{Non-abelian Gauge Theories and the Standard Model} de la masterul de \textit{Theoretical and Computational Physics} de la Facultatea de Fizică, precum și la cel de \textit{Stochastic Differential Equations} și de \textit{Introduction to graded syzygies} de la masterele de matematică de la Facultatea de Matematică și Informatică. Am fost la un curs despre \textit{Theory of intense laser radiation interaction with atomic and nuclear system} și unul de \textit{Anomaly detection}, de la F.~Fizică, respectiv FMI.
+
+La sfârșitul lunii, am avut oportunitatea să prezint, în cadrul \href{https://sites.google.com/view/master-probabilitati-fmi/seminarul-stiintific-probabilitati-si-teme-conexe}{seminarului de probabilități} care se desfășoară la FMI/IMAR, rezultatele dintr-un paper de analiză numerică, ``\textit{\href{https://epubs.siam.org/doi/10.1137/23M1589463}{Stochastic p-th Root Approximation of a Stochastic Matrix: A Riemannian Optimization Approach}}'', de F.~Durastante și B.~Meini, publicat în 2024 în \textit{SIAM Journal on Matrix Analysis and Applications}, Vol.~45, Iss.~2. Prezentarea mea a incorporat mai multe idei sumarizate din lucrare, precum și noțiuni introductive din multe alte lucrări științifice din literatura de specialitate și din cărți de geometrie diferențială, geometrie Riemanniană și optimizare.
+
+\textbf{Observațiile conducătorului științific}:
+
+\makereportpostamble{31 octombrie 2025}

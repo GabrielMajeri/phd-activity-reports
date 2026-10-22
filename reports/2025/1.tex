@@ -1,0 +1,24 @@
+\makereporttitle{2025}{ianuarie}
+
+\makereportpreamble
+
+În luna ianuarie am reușit să progresez semnificativ atât pe proiectul de cercetare pe zona de haos cuantic (studiul apariției haosului într-un model provenit din fizica nucleară), cât și pe cel de calcul numeric (construirea în paralel a matricelor de precondiționare pentru metode iterative). Am continuat să-mi fac temele și să lucrez exercițiile de la cursurile de master la care am fost.
+
+Pe partea de haos cuantic, am dezvoltat o interfață grafică interactivă (GUI) pe baza bibliotecilor \href{https://juliadynamics.github.io/DynamicalSystems.jl/latest/}{DynamicalSystems.jl} și \href{https://docs.makie.org/stable/}{Makie.jl}, cu ajutorul căreia să pot explora mai ușor spațiul fazelor și secțiunile Poincaré pentru sistemul cuadrupol bosonic.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\linewidth]{reports/2025/images/1/interactive-quantum-chaos-january-2025}
+\end{figure}
+
+Am încercat să reproduc și graficul distribuției exponentului Lyapunov maximal în funcție de energia totală a sistemului, dar nu am reușit încă să obțin aceleași rezultate ca în lucrările publicate anterior. Voi continua să investighez sursa acestor diferențe.
+
+Pe partea de construcție în paralel a matricelor de precondiționare, după mai multe încercări eșuate am reușit să identific un caz în care abordarea propusă funcționează (folosind metoda Richardson precondiționată). Schimbarea matricei de precondiționare în timpul iterațiilor a făcut algoritmul să conveargă mai rapid.
+
+\vspace{0.5em}
+
+\textbf{Observațiile conducătorului științific}:
+
+\vspace{3em}
+
+\makereportpostamble{27 ianuarie 2025}

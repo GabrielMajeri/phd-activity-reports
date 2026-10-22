@@ -1,0 +1,44 @@
+\makereporttitle{2025}{aprilie}
+
+\makereportpreamble
+
+\vspace{0.5em}
+
+În această lună am reușit să finalizez codul de calcul numeric pentru studiul sistemului cuadrupol bosonic, reproducând și extinzând astfel rezultatele din lucrarea de cercetare ``\textit{Fingerprints of classical chaotic dynamics
+in quantum behavior}'' a lui S.\ Micluță-Câmpeanu et.\ al, publicată în \emph{Romanian Reports in Physics}, volumul 70, numărul 105 (din 2018). Acesta este un model pentru oscilațiile nucleului atomic, la energii joase.
+
+Printre altele, am reușit să studiez (cu o precizie ridicată) dependența exponentului Lyapunov maximal (al sistemului dinamic obținut în limita semiclasică) față de energia totală a sistemului și de valoarea parametrului \(D\), respectiv \(B\).
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\linewidth]{reports/2025/images/4/lyapunov_exponent_vs_D_and_total_energy_for_fixed_B_0.55}
+\end{figure}
+
+Astfel, am putut să urmăresc interacțiunea dintre termenul integrabil, care depinde de \(A\) și de \(D\), și termenul neintegrabil / haotic (asemănător cu cel dintr-un sistem Hénon-Heiles), care depinde de \(B\).
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.9\linewidth]{reports/2025/images/4/lyapunov_exponent_vs_total_energy_for_B_0.55_D_0.50_2.0}
+\end{figure}
+
+Totodată, am reușit să finalizez și codul de diagonalizare numerică pentru cazul cuantic. Astfel, am putut să potrivesc distribuții Poisson și Wigner-Dyson pe histograma nivelelor de energie ale Hamiltonianului cuantic, grupate în funcție de reprezentarea ireductibilă din care provin. Încă mai sunt câteva probleme cu clasificarea precisă a nivelelor de energie, însă acestea se vor rezolva în curând.
+
+Obiectivul va fi să potrivim următorul model statistic, propus pentru prima dată în lucrarea citată mai sus, pentru a studia mecanismul care generează aceste nivele de energie:
+\[
+    P (s; \alpha) = \alpha P_{\text{Poisson}} (s) + (1 - \alpha) P_{\text{Wigner-Dyson}} (s)
+\]
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\linewidth]{reports/2025/images/4/mean_spacings_for_D_0.4_B_0.55}
+    \caption*{Spațierea medie între nivele de energie consecutive ale Hamiltonianului cuantic}
+\end{figure}
+
+Pe lângă activitatea pe principalul proiect de cercetare, în luna aceasta am continuat să studiez și să lucrez și pe alte direcții tangente temei mele de doctorat. Am participat la prelegerile din cadrul evenimentului ``\href{https://moroianu.perso.math.cnrs.fr/PNRR/GACD.html#gd}{\emph{Thematic month on Geometry and Dynamics}}'', organizat pe parcursul acestei luni la Institutul de Matematică al Academiei Române. În cadrul acestuia, au avut loc prezentări despre diferite teme de interes și pentru fizica matematică: geometrie conformă, teoria corzilor, spații omogene, sisteme dinamice etc. Am continuat să lucrez exercițiile și temele din cursul online de ``\textit{Mathematical and computational methods for Physics}'', de la Georgetown University, pe care îl auditez pe platforma edX. Totodată, am început să studiez și să redactez un material suport pentru o prezentare pe care vreau să o susțin în viitor despre teorii conforme de câmp (\textit{Conformal Field Theories}) și corespondența AdS-CFT (\textit{AdS-CFT correspondence}). În acest sens, am parcurs mai multe materiale pregătitoare / introductive despre teorii cuantice de câmp (\textit{quantum field theories}).
+
+
+\textbf{Observațiile conducătorului științific}:
+
+\vspace{3em}
+
+\makereportpostamble{28 aprilie 2025}

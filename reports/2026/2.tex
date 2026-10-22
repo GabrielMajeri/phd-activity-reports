@@ -1,0 +1,75 @@
+\makereporttitle{2026}{februarie}
+
+\makereportpreamble
+
+În februarie, am continuat să rafinez și să îmbunătățesc rezultatele obținute în luna anterioară, progresând pe mai multe direcții.
+
+Pe partea de sisteme dinamice și haos cuantic, am regândit algoritmul de identificare a punctelor critice și a regiunilor de tranziție pentru sistemul Hamiltonian cuadrupol bosonic. Noua metodă începe prin aplicarea unui \href{https://en.wikipedia.org/wiki/Savitzky%E2%80%93Golay_filter}{filtru Savitzky-Golay} pe semnalul definit de exponentul Lyapunov maximal (în funcție de valoarea parametrului \(B\)). Calculăm apoi derivata discretă a semnalului folosind funcția \texttt{np.gradient} și identificăm manual regiunile cu valoarea derivatei peste/sub un prag. Astfel putem determina automat punctele în care începe sau se termină o regiune de tranziție de fază. Cu ajutorul acestui cod, am potrivit ipoteze de tip \textit{power law} pentru prima și a doua tranziție la haos în cadrul sistemului studiat (un exemplu se poate vedea în figura \ref{fig:qbh_power_law_fits_at_fixed_energy}).
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\linewidth]{reports/2026/images/2/maximal_lyapunov_exponent_power_law_fits_at_fixed_total_energy}
+    \caption{}
+    \label{fig:qbh_power_law_fits_at_fixed_energy}
+\end{figure}
+
+Prin automatizarea întreg procesului de identificare a tranzițiilor la haos și de potrivire a ipotezelor de creștere, am putut să extind studiul la toate nivelele de energie studiate. Tendința de evoluție a exponenților critici se poate observa în figura \ref{fig:qbh_optimal_gamma_vs_total_energy_new_code}. Pentru prima tranziție, obținem exponenți critici care variază în jur de \(\gamma^* = 0.9\) pentru valori mici ale energiei totale, apoi asimptotic pare că tind spre \(\gamma^* = 0.78\). Pentru a doua tranziție, exponenții critici încep de pe la \(\gamma^* = 0.7\) și coboară și se stabilizează apoi pe la \(\gamma^* = 0.55\). Rezultă că prima tranziție la haos este mai lentă decât cea de a doua (și nu ajunge la același grad de saturație a haosului), după care revenim la integrabilitate datorită influenței termenilor de ordin 2 și 4, până când haosul redevine dominant și persistă în urma celei de a doua tranziții.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\linewidth]{reports/2026/images/2/qbh_optimal_gamma_vs_total_energy_new_fitting_code_both_transitions}
+    \caption{}
+    \label{fig:qbh_optimal_gamma_vs_total_energy_new_code}
+\end{figure}
+
+Obiectivul nostru următor este să explicăm acest comportament prin prisma teoriei haosului pentru sisteme Hamiltoniene (folosindu-ne de așa numitele ,,rezonanțe neliniare''). În acest scop, domnul profesor Băran mi-a recomandat să consult câteva surse, printre care și cartea ,,\textit{The Transition to Chaos}'' de Linda Reichl, respectiv ,,\textit{Deterministic Chaos}'' a lui H.~G.~Schuster și W.~Just. Tot la propunerea dânsului am început să studiez în detaliu și \href{https://en.wikipedia.org/wiki/H%C3%A9non%E2%80%93Heiles_system}{sistemul Hénon-Heiles}, care este o variantă simplificată a modelului nostru, neavând termenul de anarmonicitate de ordin 4:
+\[
+    \symcal{H}_{\symrm{HH}} = \frac{1}{2}\left(p_x^2 + p_y^2\right) + \frac{1}{2}\left(q_x^2 + q_y^2\right) + \lambda q_y \left(q_x^2 - \frac{q_y^2}{3}\right)
+\]
+Parametrul \(\lambda\) este luat de obicei să fie egal cu \(1\). Pentru început, am determinat curbele de nivel ale potențialului HH, pe care l-am reprezentat grafic în figura \ref{fig:henon_heiles_equipotential_curves}.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\linewidth]{reports/2026/images/2/henon_heiles_equipotential_curves}
+    \caption{Curbele de echipotențial pentru sistemul Hénon-Heiles}
+    \label{fig:henon_heiles_equipotential_curves}
+\end{figure}
+
+În ceea ce privește simulările numerice de electrodinamică clasică, m-am concentrat pe a studia diferite abordări de a calcula potențialul electric a radiației re-emise de la niște electroni accelerați de un laser. Am reușit să validez și abordarea în care calculăm direct câmpul plecând de la potențialul Liénard-Wiechert, evitând astfel să facem o dezvoltare în serie Taylor în funcție de \(1/\abs{x_0}\) (inversul distanței de la detector la centrul orbitei electronului). Totuși, s-ar putea ca această metodă directă să nu fie la fel de precisă când o vom folosi pentru a calcula numeric momentul cinetic. Rămâne să fac mai multe teste pentru a confirma acuratețea acestei variante. Rezultatele inițiale se pot vedea în figura \ref{fig:electric_field_magnitudes_direct_formula}, unde am afișat în două sub-grafice diferite componentele de ordin diferit ale integralei Fourier care ne dă componentele de frecvență ale câmpului electric.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.9\linewidth]{reports/2026/images/2/electric_field_magnitudes_direct_formula}
+    \caption{}
+    \label{fig:electric_field_magnitudes_direct_formula}
+\end{figure}
+
+De asemena, am citit articolul ,,\textit{Scaling properties of angular momentum transfer to charged particles under Laguerre-Gauss laser pulse}'' a lui P.~V.~Toma, S.~Micluța-Câmpeanu, M.~Boca, A.~Nicolin și V.~Băran, publicat în \textit{AIP Conf.~Proc.} 2843, 020005 (2023). Acesta descrie distribuția de impulsuri cinetice a electronilor antrenați de un fasciol laser de tip Laguerre-Gauss. Obiectivul meu este să reproduc rezultatele și să folosesc traiectoriile integrate pentru a studia și radiația emisă. Provocarea constă în a calcula explicit câmpul electric, câmpul magnetic și tensorul de câmp EM, precum și de a integra numeric ecuațiile de mișcare relativiste. Pentru început, am calculat intensitatea unui fascicol de tip Gauss (figura \ref{fig:gaussian_beam_profile}).
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.9\linewidth]{reports/2026/images/2/gaussian_beam_profile}
+    \caption{}
+    \label{fig:gaussian_beam_profile}
+\end{figure}
+
+Referitor la studiul modelului cosmologic bazat pe teoria branelor, am parcurs din nou toate calculele pentru derivarea sistemului de ecuații diferențiale care descrie expansiunea universului și le-am implementat folosind un cod particularizat de integrare numerică (bazat pe metoda Euler). Acest nou cod mi-a permis să reprezint grafic în mod independent componentele dinamicii (presiunea branelor, excitațiile supergravitației etc.) ceea ce ne-a ajutat să înțelegem mai bine de ce modelul nu dă rezultate bune pentru unele condiții inițiale. Problema pare să apară atunci când vitezele inițiale de creștere a razelor nu sunt suficient de mari; unele raze se contractă aproape la zero, iar acest lucru duce la divergențe în sistemul de ecuații. După ce am crescut toate derivatele inițiale cu un factor constant, nu am mai observat singularități în model, indiferent de condițiile inițiale. Un exemplu de rezultat pe care l-am putut obține acum este reprezentat în figura \ref{fig:bgc_log_radii_fixed_derivatives}.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.9\linewidth]{reports/2026/images/2/bgc_log_radii_fixed_derivatives}
+    \caption{}
+    \label{fig:bgc_log_radii_fixed_derivatives}
+\end{figure}
+
+Pe zona de \textit{high-energy physics}, am continuat să mă familiarizez cu programele de simulare Monte Carlo a coliziunilor de particule. După ce am întâmpinat foarte multe probleme cu generarea de evenimente cu \textit{jet matching \& merging} activat în MadGraph, am \href{https://bugs.launchpad.net/mg5amcnlo/+bug/2141231}{raportat problema către dezvoltatori}, care mi-au confirmat că investighează existența unor erori în versiunile mai noi de MG. Prin urmare, am trecut pe versiunea \textit{long-term support} de MG, v3.5.13. Astfel am reușit să generez în sfârșit eșantioane de procese de semnal și de fundal, limitat însă de dificultatea de a eșantiona evenimente din procesul de \(2 \rightarrow 4\) QCD când impunem constrângeri mari pe spațiul fazelor. Spre finalul lunii am început să studiez posibilitatea de a utiliza în schimb generatorul \href{https://sherpa-team.gitlab.io/}{Sherpa}, care pare să se descurce mult mai bine la eșantionarea acestui tip de procese, însă va necesita o perioadă de acomodare. Totodată, vine cu o configurație complet diferită și cu un alt set de tăieturi disponibile pentru spațiul fazelor.
+
+Pe zona de analiză numerică, am continuat să colaborez cu domnul profesor Cristian Rusu pentru a implementa și valida ideea cu precondiționarea iterativă în paralel. Am reușit să implementez un prototip funcțional care să rezolve iterativ sistemul liniar provenit din problema de nucleu, folosind placa video, în timp ce un proces \textit{worker} calculează în paralel descompunerea Cholesky parțială cu pivotare la ranguri din ce în ce mai mari. Astfel, am reușit în sfârșit să avem un exemplu clar în care reușim să întrecem metoda clasică.
+
+La sfârșitul lui ianuarie și începutul lui februarie au avut loc evaluările de proiect la materia Inginerie Software, ținut de drd.~Rareș Cristea la anul III, Informatică. Pe lângă că l-am ajutat cu notarea studenților, am pilotat și un agent AI dezvoltat de noi, capabil să citească proiectele studenților și să genereze rapoarte de evaluare care să ne ofere o perspectivă asupra muncii echipei. Ne-am folosit de mai multe biblioteci \textit{open source} (LangChain, vLLM etc.) precum și de hardware-ul oferit de Centrul de Calcul Avansat (nodul GPU). Plănuim să continuăm să dezvoltăm acest agent și să publicăm un articol în care să descriem provocările întâmpinate precum și lecțiile învățate din implementare.
+
+Pe 23 februarie a început și activitatea didactică pentru semestrul II, astfel încât am fost nevoit să-mi aloc timp pentru a pregăti materiale pentru disciplinele la care țin ore (Algoritmi Avansați, Calculatoare Numerice, Fizică Computațională). Am început să merg de asemenea la câteva cursuri de master de anul II de la Matematică, care sper să mă ajute să înțeleg mai bine conceptele de fizică teoretică pe care le studiez.
+
+\textbf{Observațiile conducătorului științific}:
+
+\makereportpostamble{27 februarie 2026}

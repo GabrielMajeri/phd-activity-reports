@@ -1,0 +1,28 @@
+\makereporttitle{2023}{decembrie}
+
+\makereportpreamble
+
+\textbf{Rezumat:} 
+
+În decembrie am reușit să pun laolaltă conceptele studiate în ultimele câteva luni, ajungând astfel la o înțelegere a stării curente a cercetării în fizica cuantică și nucleară. Înarmat cu aceste cunoștințe, am reușit să încep să reproduc o parte din rezultatele lucrărilor de cercetare care mi-au fost alocate spre studiu de către dl.~prof.~Băran.
+
+Pentru a reproduce și verifica calculele din lucrarea ,,Classical and quantal chaos described by a fourth order quadrupole boson Hamiltonian'', publicată de V.~Băran și A.~A.~Raduta în 1997 în \textit{International Journal of Modern Physics E}, am folosit inițial \href{https://www.wolfram.com/mathematica/}{Wolfram Mathematica}, împreună cu pachetul adițional de algebră necomutativă \href{https://github.com/NCAlgebra/NC}{NCAlgebra}. Din cauza limitărilor acestora în a afișa rezultatul calculelor într-un format mai ușor de prelucrat ulterior, am analizat la propunerea d-lui.~Băran și sistemul de algebră computațională \href{https://cadabra.science/}{Cadabra}. Am realizat că acesta se bazează pe biblioteca de Python \href{https://www.sympy.org/en/index.html}{SymPy} și că nu am nevoie decât de funcționalitățile oferite de aceasta. Cu ajutorul ei, am reușit să reprezint în Python expresia Hamiltonianului studiat, pe care am aplicat ulterior o serie de transformări și reduceri.
+
+În vederea implementării codului de simulare în Julia, m-am familiarizat cu biblioteca \href{https://docs.sciml.ai/DiffEqDocs/stable/}{DifferentialEquations.jl}, parcurgând documentația oficială, precum și vizionând webinar-ul video „\href{https://www.youtube.com/watch?v=KPEqYtEd-zY&feature=youtu.be}{Intro to solving differential equations in Julia}”, realizat în 2018 de Chris Rackauckas de la UC Irvine. Cu această ocazie, am definit și simulat în Julia mai multe sisteme fizice clasice (obiect în cădere liberă, pendul, oscilator armonic amortizat sau forțat) precum și câteva sisteme dinamice cu comportament haotic (pendulul dublu, sistemul Hénon-Heiles, atractorul Lorenz etc).
+
+Folosindu-mă de expresiile simplificate produse de SymPy și de biblioteca \href{https://juliadynamics.github.io/DynamicalSystems.jl/dev/}{DynamicalSystems.jl}, am reușit să implementez în Julia modelul nuclear bazat pe expansiunea cuadrupol a oscilațiilor învelișului nuclear și operatorii cuantici bosonici. Am simulat traiectorii ale acestui sistem dinamic pentru câteva valori inițiale fixate și am reușit să generez secțiuni Poincaré în spațiul fazelor.
+
+\vspace{0.5em}
+
+\textbf{Cursuri:}
+Am terminat de parcurs și am completat evaluarea finală la cursul online ,,Quantum Mechanics'', ținut de prof.~dr.~Jim Freericks de la Georgetown University prin intermediul platformei \textit{edX}. În luna decembrie, în ultimele trei module ale cursului, am discutat concepte de teoria perturbării (de ordinul I și II), evoluția în timp a sistemelor cuantice (prin intermediul ecuației lui Schrödinger și formula lui Trotter) și elemente de fotonică cuantică.
+
+Pentru a-mi extinde cunoștințele de sisteme dinamice, formalismul matematic care stă la baza sistemelor complexe, am început să parcurg materialele video din cursul de ,,Introduction to Dynamical Systems and Chaos'', ținut de David Feldman în cadrul Complexity Explorer (un proiect al Santa Fe Institute).
+
+\vspace{0.5em}
+
+\textbf{Observațiile conducătorului științific}:
+
+\vspace{2em}
+
+\makereportpostamble{29 decembrie 2023}

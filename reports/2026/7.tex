@@ -1,0 +1,157 @@
+\makereporttitle{2026}{iulie}
+
+\makereportpreamble
+
+În această lună am progresat bine pe mai multe direcții de cercetare, obținând rezultate noi sau îmbunătățind rezultatele obținute anterior.
+
+Pe partea de haos în sisteme dinamice conservative, am reușit să identific mai multe lucrări relevante pentru studiul nostru:
+\begin{itemize}
+    \item ,,\textit{Numerical solution of classical kicked rotor and local Lyapunov exponents}'', de Y.~Zheng și D.~H.~Kobe, publicat în Physics Letters A, volumul 334, nr.~4, din 2005. Aceștia studiază analitic și numeric comportamentul asimptotic al exponenților Lyapunov ,,locali'' pentru sistemul \textit{kicked rotor}:
+    \[
+        L\left(x_0, d(0), t\right) = \frac{1}{t} \ln\left[\frac{d(t)}{d(0)}\right]
+    \]
+    Definiția lor nu corespunde cu valoarea calculată folosind metoda lui Benettin \textit{et al.}, aceasta tinzând mereu la \(0\) în sistemele conservative, sau care au un spațiu al fazelor mărginit.
+
+    \item ,,\textit{Statistical and dynamical properties of a dissipative kicked rotator}'', de D.~F.~M.~Oliveira și E.~D.~Leonel, publicat în Physica A, volumul 413, din 2014. Acest studiu a fost făcut pe varianta relativistă și disipativă a sistemului \textit{kicked rotator}, astfel încât rezultatele lor nu sunt direct comparabile cu ce studiem noi, însă au urmărit evoluția mediei exponenților Lyapunov pentru diferite valori ale parametrului de control \(K\).
+
+    \item ,,\textit{Convergence Dynamics and Scaling Laws in the Dissipative Relativistic Kicked Rotator}'', de D.~Borin, D.~S.~Rando, E.~D.~Leonel și D.~F.~M.~Oliveira, în variantă de preprint, pus pe arXiv în decembrie 2025. În această lucrare, continuă studiul lor anterior pe sistemul \textit{kicked rotor} relativist, studiind tranziția la haos în jurul punctului critic și identificând un tipar de universalitate de tip \textit{power-law} în comportamentul exponenților Lyapunov și în distanța traiectoriei față de punctul fix în jurul căruia studiază dinamica sistemului.
+\end{itemize}
+
+Analizate împreună cu lucrările anterioare ale lui Greene din anii '60--'70, precum și seria de articole a lui Shenker și Kadanoff din anii '80, avem o literatură bogată la care ne putem referi în studiul nostru. Am început deja să integrez în codul meu cele mai bune practici și cele mai eficiente metode numerice pentru studiul haosului în sisteme dinamice pe care le-am preluat din aceste articole, în special modelul ,,rotorului lovit'' (\textit{kicked rotator}):
+\begin{gather*}
+    p_{n+1} = p_n + K \sin\left(\theta_n\right) \\
+    \theta_{n+1} = \theta_n + p_{n+1}
+\end{gather*}
+Totodată, am rescris mare parte din coduri folosind biblioteca de calcul numeric \href{https://docs.jax.dev/en/latest/}{JAX}, pentru o performanță mai bună, care să ne permită să creștem calitatea și precizia studiului nostru. Am reprodus o parte din rezultatele din lucrările menționate (figurile \labelcref{fig:kicked_rotator_poincare_section,fig:kicked_rotator_local_lyapunov_exponent,fig:kicked_rotator_lyapunov_exponents_evolution}).
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.9\linewidth]{reports/2026/images/7/kicked_rotator_poincare_section_k_0.95.png}
+    \caption{Secțiunea Poincaré a sistemului rotator lovit, calculată pentru \(K = 0.95\)}
+    \label{fig:kicked_rotator_poincare_section}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\linewidth]{reports/2026/images/7/kicked_rotator_local_lyapunov_exponent.pdf}
+    \caption{Evoluția exponentului Lyapunov local în sistemul rotator lovit, în funcție de numărul de iterații pe care îl calculăm}
+    \label{fig:kicked_rotator_local_lyapunov_exponent}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\linewidth]{reports/2026/images/7/kicked_rotator_lyapunov_exponents_evolution.pdf}
+    \caption{Evoluția maximului exponenților Lyapunov în sistemul rotator lovit, în funcție de puterea lovituri (parametrul de control \(K\))}
+    \label{fig:kicked_rotator_lyapunov_exponents_evolution}
+\end{figure}
+
+Referitor la studiul transferului de moment cinetic orbital în cadrul împrăștierii unui fascicul Laguerre--Gauss de un mănunchi electroni, am continuat să îmbunătățim și să rafinăm rezultatele obținute. Am rescris și aceste coduri în Python cu JAX, ceea ce ne permite acum să rulăm simulările mult mai eficient, distribuite pe GPU, și simplifică complexitatea de implementare. Cu această ocazie, am identificat mai multe greșeli în cod, în special referitoare la utilizarea greșită a timpului propriu în loc de timpul în sistemul de referință al laboratorului în mai multe formule. Repararea acestor calcule simplifică studiul nostru, momentan nemaifiind nevoie să implementăm algoritmi specifici pentru integrarea numerică a funcțiilor rapid oscilante, chiar și la viteze relativiste. Rezultatele se pot vedea în figurile \labelcref{fig:electrodynamics_experimental_setup,fig:electrodynamics_final_angular_momenta,fig:electrodynamics_electric_field_norm,fig:electrodynamics_electric_field_x,fig:electrodynamics_electric_field_spectrum}. Am reușit să extindem și să testăm codul și pentru electroni distribuiți inițial într-o bilă, cu viteze inițiale nenule și eventual cu alte direcții de deplasare. În cazurile de bază, reproducem și extindem rezultatele din literatură; alte rezultate sunt complet noi. Am discutat deja cu doamna prof.~Mădălina Boca în vederea pregătirii unei lucrări științifice în care să includem toate aceste rezultate, sperând ca pe viitor să le putem verifica și experimental la o infrastructură laser de mare intensitate, cum ar fi \textsc{ELI-NP}.
+
+\begin{figure}[htbp]
+    \centering
+    \caption{Rezultate numerice obținute din studiul transferului de moment cinetic orbital prin împrăștierea unui fascicul Laguerre--Gauss de un mănunchi de electroni}
+    \begin{subfigure}{0.42\textwidth}
+        \includegraphics[width=1\linewidth]{reports/2026/images/7/experimental_setup.png}
+        \caption{Configurația experimentală simulată}
+        \label{fig:electrodynamics_experimental_setup}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.42\textwidth}
+        \includegraphics[width=1\linewidth]{reports/2026/images/7/final_angular_momenta.png}
+        \caption{Distribuția finală de moment cinetic orbital a electronilor accelerați de fascicolul Laguerre--Gauss}
+        \label{fig:electrodynamics_final_angular_momenta}
+    \end{subfigure}
+    \\[1em]
+    \begin{subfigure}{0.4\textwidth}
+        \includegraphics[width=1\linewidth]{reports/2026/images/7/electric_field_norm.pdf}
+        \caption{Norma câmpului electric măsurat pe detector, integrat pe parcursul simulării}
+        \label{fig:electrodynamics_electric_field_norm}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.4\textwidth}
+        \includegraphics[width=1\linewidth]{reports/2026/images/7/electric_field_x.pdf}
+        \caption{Partea reală a componentei pe \(x\) a câmpului electric măsurat pe detector}
+        \label{fig:electrodynamics_electric_field_x}
+    \end{subfigure}
+    \\[1em]
+    \begin{subfigure}{0.52\textwidth}
+        \includegraphics[width=1\linewidth]{reports/2026/images/7/electric_field_spectrum.pdf}
+        \caption{Intensitatea spectrală a câmpului electric, calculată la mai multe frecvențe}
+        \label{fig:electrodynamics_electric_field_spectrum}
+    \end{subfigure}
+\end{figure}
+
+Luna aceasta am reușit să mai discut și cu Andrei Rădoacă-Dogaru referitor la modelul de \textit{brane gas cosmology} pe care îl studiem. Am identificat mai multe probleme cu codul existent de integrare numerică, care folosea metoda Euler, și l-am îmbunătățit, trecând la metoda Runge-Kutta de ordin 4. Astfel, limitările și instabilitățile numerice care păreau să existe în modelul lui Andrei erau de fapt cauzate de un pas de integrare prea mare, relativ la ordinul de convergență a metodei de integrare numerică.
+
+Noua implementare, scrisă în JAX, ne-a permis să obținem niște rezultate rezonabile cu modelul propus. Am descoperit că mecanismul de \textit{drag/friction} funcționează, reușind să compactifice o parte din dimensiuni, însă pare că pentru multe configurații, este de fapt prea puternic. În figura \labelcref{fig:constant_time_brane_gas_cosmology_fixed_numerical_integration} am afișat grafic evoluția sistemului pentru scenariul în care raza dimensiunii temporale este constantă, reproducând astfel rezultatele din modelul original al lui Easther. În figura \labelcref{fig:compact_time_brane_gas_cosmology_fixed_numerical_integration} reprezentăm dinamica pentru un set aleator de date inițiale, cu raza timpului crescând ca \(\log\left(\log\left(\tau\right)\right)\).  Planul nostru este să încercăm acum să integrăm în model și efectul fluctuațiilor statistice, folosindu-ne de ecuațiile Boltzmann-Einstein.
+
+\begin{figure}[htbp]
+    \centering
+    \caption{Rezultatele integrării numerice a ecuațiilor Friedmann pentru modelul cosmologic de tip ,,\textit{brane gas}''}
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=1\linewidth]{reports/2026/images/7/constant_time_bgc_seed_13_log_radii.pdf}
+        \caption{Traiectorie a modelului cosmologic de brane cu timp constant, integrat numeric folosind metoda RK4, reproducând rezultatele din Easther \textit{et al.}}
+        \label{fig:constant_time_brane_gas_cosmology_fixed_numerical_integration}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=1\linewidth]{reports/2026/images/7/compact_time_bgc_seed_13_log_radii.pdf}
+        \caption{Traiectorie a modelului cosmologic de brane cu timp compact, integrat numeric folosind metoda RK4}
+        \label{fig:compact_time_brane_gas_cosmology_fixed_numerical_integration}
+    \end{subfigure}
+\end{figure}
+
+
+Pentru studiul posibilități de descoperire a unei rezonanțe \textit{ultraheavy diquark} la viitorul HL-LHC, am identificat și rezolvat mai multe probleme referitoare la modelul teoretic pe care îl folosim și la modul în care generăm evenimente simulate folosind eșantionare Monte Carlo.
+
+În primul rând, am descoperit că principalul lanț de dezintegrare studiat anterior, \(S_{uu} \rightarrow \chi \chi \rightarrow W^+ b \, W^+ b\), nu este singurul cu o secțiune de producere foarte mare. Noul quark vectorial \(\chi\) introdus în model are rațiile de ramificare (\textit{branching ratios}) \(B(\chi \rightarrow W^+b) = 50\%\) și \(B(\chi \rightarrow Zt) = B(\chi \rightarrow h^0 t) = 25\%\), însă din motive de simetrie, dezintegrarea \(S_{u u} \rightarrow \chi \chi \rightarrow W^+b \, h^0t\) are o secțiune de producere la fel de mare decât \(\chi \chi \rightarrow W^+b \, W^+b\) (figura \labelcref{fig:suu_mass_scan}). În plus, am identificat probleme în modelul UFO exportat din FeynRules, care avea parametri modificați inclusiv la unele particule din Modelul Standard (bosonul Higgs și quark-ul top). Le-am înlocuit pe acestea cu valorile din baza de date PDG.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.7\linewidth]{reports/2026/images/7/Suu_mass_scan.pdf}
+    \caption{}
+    \label{fig:suu_mass_scan}
+\end{figure}
+
+Cu ocazia acestor verificări la nivelul modelului teoretic, am calculat numeric incertitudinea asociată funcției de distribuție a partonilor (PDF) pe care o folosim (figurile \labelcref{fig:suu_pdf_uncertainty,fig:qcd_pdf_uncertainty}). Am confirmat și justificat astfel alegerea setului \textsc{NNPDF 4.0 LO} pentru studiile ulterioare.
+
+\begin{figure}[htbp]
+    \centering
+    \caption{Incertitudinile sistematice asociate diferitelor tipuri de funcții de distribuție de partoni (PDF)}
+    \begin{subfigure}{0.49\linewidth}
+        \centering
+        \includegraphics[width=1\linewidth]{reports/2026/images/7/Suu_pdf_uncertainty.pdf}
+        \caption{}
+        \label{fig:suu_pdf_uncertainty}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.49\linewidth}
+        \centering
+        \includegraphics[width=1\linewidth]{reports/2026/images/7/qcd_pdf_uncertainty.pdf}
+        \caption{}
+        \label{fig:qcd_pdf_uncertainty}
+    \end{subfigure}
+\end{figure}
+
+În al doilea rând, am rezolvat o dilemă referitoare la secțiunile de producere a proceselor de fundal de tip QCD \(2 \rightarrow \Set{2, 3, 4, 5}\). Cu tăieturile din spațiul fazelor pe care le aplicam, obțineam secțiuni mai mari pentru procesele cu un număr mai mare de jeturi în starea finală, deși teoretic ne-am aștepta ca secțiunea să scadă cu un factor de \(\alpha_s\) pentru fiecare jet în plus. Explicația pe care am găsit-o în final se leagă de aproximarea de QCD perturbativ folosită de MadGraph pentru a genera evenimente de acest tip. Din cauza resumării Sudakov, secțiunea de producere crește cu
+\[
+    \sigma_{n+1} \approx \sigma_{n} \frac{\alpha_s}{2 \pi} C_A \ln^2 \left(\frac{Q^2}{q_{\perp}^2}\right)
+\]
+unde \(\sigma_k\) reprezintă secțiunea de producere a unui eveniment cu \(k\) jet-uri, \(Q\) este \textit{hard scale} (masa lui \(S_{uu}\) în cazul nostru), \(q_{\perp}\) este aproximativ cel mai mic impuls transversal al jet-urilor, \(\alpha_s \approx 0.118\) iar \(C_A = 3\) este factorul de culoare. Ne-am dat seama că este obligatoriu să creștem parametrul \texttt{ptj} din MadGraph, care impune o tăietură pe \(p_{\intercal}\) minim al fiecărui jet generat, pentru a evita rapoartele nefizice dintre secțiunile de producție a jet-urilor. Obținem astfel evenimente în zona din spațiul fazelor în care se află și semnalul, dar care respectă ierarhia fizică a probabilităților de producere.
+
+Nu în ultimul rând, luna aceasta a venit feedback-ul final de la recenzor pe articolul \href{https://arxiv.org/abs/2601.11181}{,,\textit{HL-LHC sensitivity to an ultraheavy \(S_{uu}\) diquark in the \(u\chi\) channel}''}, la care sunt coautor. În urma unor mici modificări, am retrimis articolul și am primit confirmarea că articolul nostru urmează să fie publicat în \emph{Physical Review D}.
+
+Tot în această lună am continuat să lucrez la metoda de rezolvare a sistemelor liniare mari folosind strategia de precondiționare iterativă alternantă. Am reparat probleme de implementare ale agentului de \textit{reinforcement learning}, care a reușit astfel să învețe cum să aleagă momentul potrivit și rangul potrivit pentru actualizarea matricei de precondiționare (dată de descompunerea Cholesky parțială cu pivotare \textit{greedy}). De asemenea, analizând mai atent performanța metodei, am realizat că aceasta nu putea să fie competitivă cu abordarea clasică (\textit{precondition-then-solve}) din cauză că nu știm până la ce rang va merge metoda, prin urmare nu putem aloca de la început matrici de dimensiunea potrivită. Mai mult, din motive de memorie cache, aplicarea matricei de precondiționare de un rang mai mic poate să coste la fel de mult ca aplicarea celei de rang complet, deoarece matricea de capacitanță nu este stocată contiguu în memorie. Prin urmare, am adaptat implementarea acestei strategii de precondiționare, astfel încât să aloce matrici de dimensiunea necesară pentru rangul curent, realocând și actualizând dinamic bufferele când este nevoie. Refăcând experimentele anterioare, am obținut astfel timpi de rezolvare foarte buni cu metoda mea, în comparație cu abordările clasice (figura \labelcref{fig:sgdml_benzene_solve_times}).
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\linewidth]{reports/2026/images/7/sgdml_benzene_2048_solve_times.pdf}
+    \caption{Compararea timpilor de rezolvare a unei probleme de \textit{kernel ridge regression}, \(\left(K + \lambda I\right) w = y\), folosind diferite strategii de precondiționare pentru metoda gradienților conjugați}
+    \label{fig:sgdml_benzene_solve_times}
+\end{figure}
+
+\textbf{Observațiile conducătorului științific}:
+
+\makereportpostamble{27 iulie 2026}

@@ -1,0 +1,40 @@
+\makereporttitle{2025}{iunie}
+
+\makereportpreamble
+
+\vspace{0.5em}
+
+În luna iunie am făcut progrese considerabile în obținerea unor rezultate noi în studiul sistemului Hamiltonian cuadrupol bosonic.
+
+Pe partea de haos clasic, am implementat o nouă metodă de eșantionare a condițiilor inițiale, care îmi oferă o acoperire mai bună a spațiului fazelor. Cu ajutorul acesteia și a celorlalte optimizări pe care le-am implementat, am reușit să obțin estimări precise pentru exponentul Lyapunov maximal al sistemului studiat, pentru diferite valori ale hiperparametrilor. Le-am folosit pentru a potrivi o lege exponențială de creștere a exponentului Lyapunov maxim (global) în raport cu parametrul de control \(B\):
+\[
+    \lambda \approx \lambda_{0} \left(B - B_{0}\right)^{\gamma}
+\]
+Scopul a fost identificarea unei valori critice \(B_{0}\) a parametrului \(B\), de la care începe apariția haosului, indiferent de energia totală a sistemului. Ne așteptam de asemenea ca și parametrul \(\gamma\) să aibă de asemenea un comportament universal, asemănător situației observate de M.~Feigenbaum în lucrarea sa ,,\emph{The universal metric properties of nonlinear transformations}'' din Journal of Statistical Physics, vol.~21, nr.~6 din 1979, și reconfirmată (numeric) de V.~Băran, M.~Zus, A.~Bonasera și A.~Paturca în lucrarea lor ,,\emph{Quantifying the folding mechanism in chaotic dynamics}'' din Romanian Journal of Physics, vol.~60, nr.~9-10 din 2015.
+
+\begin{figure}[hbtp]
+    \centering
+    \includegraphics[width=1.0\linewidth]{reports/2025/images/6/gamma_optimal_fit_all_energies}
+\end{figure}
+
+Pe partea de haos cuantic, am experimentat cu diferite metode numerice de diagonalizare a matricei sistemului, identificând în final abordarea cea mai eficientă pentru nevoile studiului nostru (construirea unei matrice dense și utilizarea funcției \texttt{eigh} din NumPy, compilat cu suport pentru Intel Math Kernel Library). Cu ajutorul infrastructurii de calcul a Universității, am început să calculez vectorii și valorile proprii (nivelele de energie) ale sistemului. Totodată, am optimizat codurile numerice de construire a matricei și de categorisire a valorilor proprii în funcție de reprezentarea ireductibilă din care provin. Am reușit astfel să obțin niște grafice cu distribuția spațierii medie între valorile proprii consecutive (din fiecare categorie).
+
+\begin{figure}[hbtp]
+    \centering
+    \includegraphics[width=0.45\linewidth]{reports/2025/images/6/eigenvalues_spacings_N_130_B_0.0}
+    \hspace{1em}
+    \includegraphics[width=0.45\linewidth]{reports/2025/images/6/eigenvalues_spacings_N_130_B_0.2} \\
+    \includegraphics[width=0.45\linewidth]{reports/2025/images/6/eigenvalues_spacings_N_130_B_0.4}
+    \hspace{1em}
+    \includegraphics[width=0.45\linewidth]{reports/2025/images/6/eigenvalues_spacings_N_130_B_0.55}
+\end{figure}
+
+Pe lângă rezultatele obținute pe acest proiect de cercetare, am reușit să progresez între timp și cu construirea și aplicarea eficientă a matricelor de precondiționare pentru rezolvarea sistemelor liniare mari. Am reușit să înțeleg și să rezolv problemele pe care le aveam cu algoritmii clasici pe care i-am implementat (metoda Richardson, coborârea pe pantă, metoda gradienților conjugați), obținând în sfârșit rezultate care corespund cu predicțiile teoretice. Având aceste cunoștințe și coduri numerice la dispoziție, urmează să experimentez cu mai multe abordări de construcție iterativă a matricei de precondiționare.
+
+În săptămâna 9--13 iunie, am participat la a 29-a ediție a \href{https://sites.google.com/view/ronsa/the-29th-national-school-of-algebra?authuser=0}{\emph{National School of Algebra}}, la care au venit cercetători consacrați în domeniu, cum ar fi Josep-Alvarez Montaner, Claudiu Raicu și Alessio Sammartano. Prelegerile au acoperit teme de actualitate în cercetarea pe algebră abstractă, cum ar fi rezoluții libere pentru ideale monomiale și teorie Morse discretă, functori polinomiali și coomologie stabilă, și scheme Hilbert pentru puncte. Pe 18 iunie, am participat la conferința lunară a Institutului de Matematică al Academiei Române (IMAR), unde Marius Tucsnak de la Universitatea din Bordeaux a ținut o prelegere despre ,,\emph{Reachable spaces for infinite dimensional linear systems}''.
+
+\textbf{Observațiile conducătorului științific}:
+
+\vspace{3em}
+
+\makereportpostamble{30 iunie 2025}

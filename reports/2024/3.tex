@@ -1,0 +1,62 @@
+\makereporttitle{2024}{martie}
+
+\makereportpreamble
+
+\textbf{Rezumat:}
+
+În această lună am continuat să lucrez pe proiectul de \emph{quantum chaos} pe care mi l-a propus dl.~prof.~Virgil Băran. Am reușit să înțeleg și să reproduc o parte dintre rezultatele din lucrările anterioare care studiază apariția haosului cuantic într-un sistem bazat pe un model al mișcărilor nucleare (expansiune cuadrupol pentru mișcările suprafeței nucleare).
+
+\vspace{0.5em}
+
+\textbf{Activitate de cercetare:}
+
+Folosind codul de calcul simbolic pe care l-am dezvoltat luna precedentă, am reușit să obțin explicit elementele de matrice pentru Hamiltonianul sistemului, scriindu-l într-o bază de oscilatori armonici izotropi și evaluându-l față de stările proprii de energie ale acestora (i.e. \(\ket{0, 0}, \ket{0, 1}, \dots, \ket{0, N}\); apoi \(\ket{1, 0}, \ket{1, 1}, \dots, \ket{1, N-1}\) și analog până la \(\ket{N, 0}\)).
+
+De exemplu, pentru \(N = 3\) obținem matricea:
+\[
+    H = \scalemath{0.7}{
+        \begin{pmatrix}
+           1.0 A + 0.5 D & 0 & \frac{\sqrt{2} D}{2} & 0 & 0 & \frac{\sqrt{2} D}{2} \\
+           0 & 2 A + 1.5 D & 0 & 0 & \frac{3 B}{2} & 0 \\
+           \frac{\sqrt{2} D}{2} & 0 & 3.0 A + 3.25 D & \frac{3 \sqrt{2} B}{4} & 0 & \frac{D}{4} \\
+           0 & 0 & \frac{3 \sqrt{2} B}{4} & 2 A + 1.5 D & 0 & - \frac{3 \sqrt{2} B}{4} \\
+           0 & \frac{3 B}{2} & 0 & 0 & 3.0 A + 3.0 D & 0 \\
+           \frac{\sqrt{2} D}{2} & 0 & \frac{D}{4} & - \frac{3 \sqrt{2} B}{4} & 0 & 3.0 A + 3.25 D 
+        \end{pmatrix}
+    }
+\]
+Obiectivul este să studiem distribuția nivelelor de energie (valorilor proprii) consecutive ale acestui Hamiltonian (luând aproximări din ce în ce mai bune), pentru a vedea cum evoluează de la o distribuție de tip \textbf{Poisson} (corespunzând integrabilității sistemului semiclasic) la distribuția valorilor proprii consecutive ale unor matrici simetrice cu coeficienți distribuiți normal, denumite \textbf{ansamblu Gaussian unitar} (corespunzând unui sistem haotic în limita semiclasică).
+
+În acest scop, am început să studiez două abordări diferite:
+\begin{itemize}
+    \item Identificarea unui algoritm numeric eficient pentru diagonalizarea matricelor obținute pentru diferite valori ale lui \(N\), toate având o structură specifică (\emph{sparse} și \emph{highly-diagonal});
+
+    \item Utilizarea unui algoritm numeric \emph{iterativ} care să poată refolosi vectorii proprii obținuți anterior pentru a determina mai eficient noile valori.
+\end{itemize}
+
+De asemenea, am reușit să reproduc și rezultatele referitoare la comportamentul în spațiul fazelor al Hamiltonianului clasic. Pe lângă integrarea ecuațiilor de mișcare obținute pe baza legii lui Hamilton, am reușit să generez și secțiunile Poincaré în spațiul fazelor, actualizând și adaptând codul existent din biblioteca \texttt{DynamicalSystems.jl}. De exemplu, pentru parametrii \(A = 1.0\), \(B = 0.2\), \(D = 0.4\) și energia inițială \(E = 10\) am obținut următorul grafic:
+\begin{figure}[hbtp]
+    \centering
+    \includegraphics[width=0.7\textwidth]{reports/2024/images/poincare-section}
+\end{figure}
+
+\vspace{0.5em}
+
+\textbf{Cursuri și seminare științifice:}
+
+În martie, am participat la o nouă prelegere din cadrul cursului doctoral „\emph{Standard Model and Minimally Supersymmetric Standard Model}”, ținut de C.S.~I dr.~Călin Alexa. De asemenea, am participat și la cursurile doctorale din cadrul direcției de Fizica Stării Condensate, anume „\emph{Aplicații specifice structurilor magnetice nanometrice}”, ținut de C.S~I dr.~Victor Kuncser, și „\emph{Metode ab initio pentru materiale și nanostructuri}”, ținut de prof.~dr.~George Alexandru Nemneș. 
+
+Am participat la câteva seminare științifice care s-au desfășurat la Institutul de Matematică al Academiei Române (IMAR):
+\begin{itemize}
+    \item Seminarul de geometrie al lui Sergiu Moroianu, unde s-a ținut o prelegere despre spectrul operatorului Dirac pe suprafețe Riemann hiperbolice;
+    \item Seminarul de geometrie algebrică organizat de Marian Aprodu, unde s-a făcut o introducere în suprafețele K3;
+    \item Seminarul ,,\emph{Analysis \& PDEs}'', organizat de Liviu Ignat și Cristian Cazacu, unde au avut loc prezentări despre transformata Fourier, distribuții, probleme de valori proprii pentru operatori și noțiuni despre spații Sobolev.
+\end{itemize}
+
+\vspace{0.5em}
+
+\textbf{Observațiile conducătorului științific}:
+
+\vspace{3em}
+
+\makereportpostamble{31 martie 2024}

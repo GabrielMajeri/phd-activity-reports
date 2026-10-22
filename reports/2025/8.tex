@@ -1,0 +1,68 @@
+\makereporttitle{2025}{august}
+
+\makereportpreamble
+
+\vspace{0.5em}
+ 
+În luna august, m-am concentrat pe rafinarea rezultatelor obținute până în prezent pe temele de cercetare pe care lucrez. De asemenea, am avut oportunitatea să aprofundez cunoștințele mele de analiză de date și învățare automată, analiză numerică și rezolvarea sistemelor de ecuații cu derivate ordinare și parțiale.
+
+Pentru studiul tranziției la haos în sistemul Hamiltonian cuadrupol bosonic, am început să îmbunătățesc calitatea rezultatelor numerice obținute și să validez deciziile referitoare la metodologia de cercetare:
+
+\begin{itemize}
+    \item Pentru haosul cuantic, am crescut dimensiunea reprezentării matriceale a Hamiltonianului, diagonalizând-o ulterior cu puterea de calcul disponibilă în ACC. Astfel am reușit să descopăr un nou comportament interesant în evoluția procentului de haos în funcție de valoarea lui \(B\) (a se vedea Figura \ref{fig:best_fit_alpha}). Voi continua să rafinez aceste rezultate și să încerc să explic acest comportament.
+
+    \begin{figure}[htbp]
+        \centering
+        \includegraphics[width=0.8\linewidth]{reports/2025/images/8/alphas_plot_N_140}
+        \caption{Graficul celei mai estimări pentru parametrul \(\alpha\) (procentul de regularitate în spectrul cuantic) în funcție de \(B\)}
+        \label{fig:best_fit_alpha}
+    \end{figure}
+
+    \item Am dezvoltat un nou cod de eșantionare a curbei de echipotențial, care reconstruiește explicit (analitic) componentele acesteia, după care o discretizează, producând un \emph{mesh} arbitrar de fin din care se pot eșantiona în mod omogen/uniform puncte, respectând măsura Lebesgue indusă pe varietate. Pentru cazul particular \(B = 0\), sistemul este integrabil și ecuația curbei de echipotențial corespunde unei elipse, de pe care putem eșantiona uniform puncte în mod direct. Un exemplu de eșantion de condiții inițiale de pe o curbă de echipotențial este reprezentat grafic în Figura \ref{fig:equipotential_initial_conditions}.
+    
+    \begin{figure}[htbp]
+        \centering
+        \includegraphics[width=0.8\linewidth]{reports/2025/images/8/equipotential_points}
+        \caption{Puncte eșantionate omogen pe curba de echipotențial pentru \(A = 1.0\) MeV, \(B = 0.55 A\), \(D = 0.4 A\), \(E_{\text{pot}} = 10 A\)}
+        \label{fig:equipotential_initial_conditions}
+    \end{figure}
+
+    \item Pentru optimizarea hiperparametrilor, am început să testez diferite valori ale timpului (maxim) de simulare al traiectoriei pentru calculul exponentului Lyapunov local (a se vedea studiul în Figura \ref{fig:lyapunov_exponent_computation_time}). Vedem astfel cât de importantă este alegerea unei valori cât mai mari (în detrimentul timpului de execuție), pentru a obține o estimare precisă a distribuției reale a exponenților Lyapunov (Tabela \ref{tab:lyapunov_exponent_computation_time}).
+
+    \begin{figure}[htbp]
+        \centering
+        \includegraphics[width=0.8\linewidth]{reports/2025/images/8/lyapunov_exponent_computation_time}
+        \caption{Reprezentările grafice ale distribuțiilor (histogramele) exponenților Lyapunov determinați numeric pentru aceleași \(N = 256\) condiții inițiale, eșantionate uniform aleator din spațiul fazelor pentru \(A = 1\) MeV, \(B = 0.55 A\), \(D = 0.4 A\), \(E_{\text{tot}} = 5 A\)}
+        \label{fig:lyapunov_exponent_computation_time}
+    \end{figure}
+    
+    \begin{table}[htbp]
+        \begin{center}
+            \begin{tabular}{c|c|c|c}
+                \textbf{Timpul de simulare} & \textbf{Valoare medie} & \textbf{Valoare mediană} & \textbf{Valoare maximă} \\
+                \hline
+                100 & 0.3181 & 0.3256 & 0.5074 \\
+                \hline
+                500 & 0.3143 & 0.3229 & 0.4127 \\
+                \hline
+                1000 & 0.3137 & 0.3184 & 0.3884 \\
+                \hline
+                2500 & 0.3149 & 0.3203 & 0.3647 \\
+                \hline
+                5000 & 0.3149 & 0.3201 & 0.3503 \\
+                \hline
+                10000 & 0.3154 & 0.3207 & 0.3406
+            \end{tabular}
+            \caption{Principalele statistici ale exponenților Lyapunov, determinați numeric pentru \(N = 256\) condiții inițiale eșantionate uniform aleator din spațiul fazelor pentru \(A = 1\) MeV, \(B = 0.55 A\), \(D = 0.4 A\), \(E_{\text{tot}} = 5 A\)}
+            \label{tab:lyapunov_exponent_computation_time}
+        \end{center}
+    \end{table}
+\end{itemize}
+
+În această lună am făcut progrese considerabile și în zona de fizica particulelor, în urma unei colaborări fructuoase cu colegii de la grupul ATLAS de la IFIN-HH. Am optimizat și extins codul de analiză de date folosit pentru studiul datelor simulate ale unui model \emph{diquark scalar boson}. Cu aceste îmbunătățiri, putem începe să studiem noi evenimente cu procese de dezintegrare cu multe jeturi hadronice în starea finală.
+
+Pe partea de învățare, am parcurs materialele video despre relativitatea specială și dezintegrările \(\alpha\), \(\beta\), \(\gamma\) de pe \href{https://www.khanacademy.org/}{Khan Academy}. Acestea vin în completarea și reactualizarea cunoștințelor mele de fizică, necesare pentru a parcurge cursul \href{https://www.coursera.org/learn/particle-physics}{``\textit{Particle Physics: an Introduction}''}, oferit de \href{https://www.unige.ch/}{Université de Genève} prin intermediul platformei \href{https://www.coursera.org/}{Coursera}.
+
+\textbf{Observațiile conducătorului științific}:
+
+\makereportpostamble{29 august 2025}

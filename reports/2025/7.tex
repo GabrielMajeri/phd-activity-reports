@@ -1,0 +1,51 @@
+\makereporttitle{2025}{iulie}
+
+\makereportpreamble
+
+\vspace{0.5em}
+
+În această lună, am participat la mai multe școli de vară, în cadrul cărora am învățat lucruri noi și am avut oportunitatea de a interacționa cu cercetători consacrați. Sunt convins că abilitățile dobândite și uneltele teoretice și practice pe care le-am descoperit îmi vor fi utile în viitor. În același timp, am continuat să lucrez la rafinarea rezultatelor obținute inițial în studiul Hamiltonianului cuadrupol bosonic, precum și să învăț concepte avansate de fizică teoretică și computațională.
+
+În perioada 30 iunie -- 11 iulie, a avut loc \href{https://indico.ictp.it/event/10842/}{\textit{Măgurele Summer School for Computing in a Rapidly Evolving Society: Parallel Algorithms and Optimizations}}, la care am învățat despre metodele de programare și uneltele folosite în calculul de înaltă performanță modern (\emph{cluster computing} și \emph{parallel programming} folosind \href{https://slurm.schedmd.com/overview.html}{SLURM} și \href{https://www.open-mpi.org/}{MPI}, \emph{shared memory programming}, \emph{GPU computing} folosind \href{https://www.openacc.org/}{OpenACC}, \emph{quantum computing} pe platforma \href{https://www.ibm.com/quantum}{IBM Quantum} etc). Prelegerile au fost ținute de către cercetători de renume din țară și din afara țării: I.~Girotto și I.~Davydenkova de la ICTP (Italia), F.~Andreucci de la SISSA (Italia), A.~M.~Elena de la STFC (Marea Britanie), F.~Spiga de la NVIDIA (Marea Britanie) și Ș.~Ataman de la ELI-NP și R.~Ionicioiu de la IFIN-HH. Nu am reușit să fiu prezent fizic la toate cursurile, dar am parcurs materialele oferite și am lucrat exercițiile lăsate ca temă.
+
+Între 1--7 iulie am participat și la o școală de vară de \href{https://imar.ro/~imar/2025/Conferinte/NSF-UEFISCDI_SummerSchool.html}{Mecanica Fluidelor}, organizată la \href{https://imar.ro/ro}{Institutul de Matematică al Academiei Române (IMAR)}, ca parte a unui \href{https://web.math.princeton.edu/~aionescu/NSF-UEFISCDI.html}{grant NSF-UEFISCDI}. Au fost susținute prelegeri de către cercetători și profesori recunoscuți în domeniu, cum ar fi Alexandru Ionescu (\emph{Princeton University}), Călin Martin (\emph{Universitatea Babeș-Bolyai}), Emilian Părău (\emph{University of East Anglia}) și Vlad Vicol (\emph{New York University}).
+
+Între 8--17 iulie am fost la Sinaia, la a 10-a ediție a \emph{Regional French-Romanian Summer School on Applied Mathematics}. La această școală de vară au venit profesori de matematică aplicată care ne-au prezentat subiecte cum ar fi \emph{PDE Constrained Optimization} (Andrei Drăgănescu de la \emph{University of Maryland, Baltimore Country} din SUA), \emph{Transformer Models} (Heinrich Matzinger de la \emph{Georgia Institute of Technology} din SUA), \emph{Monte Carlo simulations and Poisson point processes} (Antoine Lejay de la \emph{l'Université de Lorraine} din Franța), \emph{controlul și observabilitatea EDP-urilor} (Ionel Rovența de la \emph{Universitatea din Craiova}).
+
+Pe partea de cercetare propriu-zisă, la propunerea d-lui.~prof.~Virgil Băran, am început să explorez distribuția spațiilor dintre nivelele de energie consecutive ale Hamiltonianului cuadrupol bosonic cuantic, separată pe benzi de energie. În acest fel, am descoperit că nivelele de la energii joase tind să aibă o spațiere mai regulată, corespunzătoare unei distribuții Poisson, în timp ce cele de la energii înalte încep deja să respecte statistica haotică, conformă cu distribuția Wigner-Dyson.
+
+\begin{figure}[htbp]
+    \centering
+    \captionsetup{justification=centering}
+    \includegraphics[width=0.8\linewidth]{reports/2025/images/7/alpha_per_energy_band}
+    \caption*{Procentul de regularitate în spațierea medie dintre nivelele de energie \\ ale Hamiltonianului cuadrupol bosonic cuantic}
+\end{figure}
+
+Rămâne de văzut cât de bine se corelează acest comportament cu evoluția exponentului Lyapunov maximal din sistemul clasic. În acest scop, am deja câteva grafice realizate anterior pe care mă pot baza, însă vreau să aplic și câteva teste statistice de corelație între aceste două măsuri ale haoticității sistemului clasic/cuantic.
+
+% \begin{figure}
+%     \centering
+%     \captionsetup{justification=centering}
+%     \includegraphics[width=0.8\linewidth]{lyapunov_exponent_vs_total_energy_D_0.4_B_0.55}
+%     \caption*{Evoluția exponentului Lyapunov maximal în funcție de energia totală \\ a sistemului Hamiltonian bosonic în limita semiclasică}
+% \end{figure}
+
+În această lună am început să colaborez și cu grupul de ATLAS de la IFIN-HH, coordonat de dr.~Călin Alexa. Am avut oportunitatea să mă implic cu expertiza mea în statistică și învățare automată, cu scopul de a face analiză pe datele obținute experimental (sau din simulări) în \emph{high-energy physics}. I-am ajutat deja să curețe și să reanalizeze datele obținute din simulatorul Pythia pentru un studiu în cadrul căruia propun existența unei noi particule, \emph{\(S_{u u}\) diquark}.
+
+% \begin{figure}[htbp]
+%     \centering
+%     \includegraphics[width=0.8\linewidth]{xgboost-confusion-matrix}
+%     \caption*{Matrice de confuzie pentru clasificarea evenimentelor de coliziune proton-proton folosind biblioteca \href{https://xgboost.readthedocs.io/en/stable/}{XGBoost}}
+% \end{figure}
+
+Începând din iunie și continuând pe tot parcursul lunii curente, am urmărit prelegerile înregistrate și am rezolvat exercițiile lăsate ca temă în cadrul cursului online \href{https://www.edx.org/learn/quantum-physics-mechanics/georgetown-university-quantum-mechanics-for-everyone}{\emph{Quantum Mechanics for Everyone}}, oferit de Georgetown University pe platforma edX. Am mai urmat acest curs și acum doi ani, însă de data aceasta țintesc să obțin și un certificat/diplomă în urma finalizării lui.
+
+În cadrul implicării mele în proiectul \href{https://danubius-ri.eu/}{DANUBIUS}, care \href{https://research-and-innovation.ec.europa.eu/news/all-research-and-innovation-news/danubius-ri-becomes-european-research-infrastructure-consortium-2025-06-25_en}{a dobândit recent statutul de \emph{European Research Infrastructure Consortium} (ERIC)}, am reușit să portez tema dezvoltată anterior de drd.~Gabriel Pană pe noua instanță de \href{https://ckan.org/}{CKAN} (folosită ca registru de metadate pentru viitorul \emph{DANUBIUS Data Centre}) și să configurez autentificarea cu \href{https://edugain.org/}{eduGAIN} la ea (cu ajutorul plugin-ului \href{https://github.com/keitaroinc/ckanext-saml2auth}{\texttt{ckanext-saml2auth}}).
+
+Spre sfârșitul lunii am început să revizuiesc toate ,,caietele de laborator'' și notițele pe care le-am luat până acum, pe toate temele de cercetare pe care lucrez, cu scopul de a le completa și de a identifica direcții rămase de explorat în cadrul fiecăreia.
+
+\textbf{Observațiile conducătorului științific}:
+
+\vspace{3em}
+
+\makereportpostamble{22 iulie 2025}

@@ -1,0 +1,111 @@
+\makereporttitle{2026}{mai}
+
+\makereportpreamble
+
+În această lună am obținut rezultate noi și interesante pe mai multe dintre direcțiile de cercetare pe care lucrez. De asemenea, am participat și la diverse activități, în vederea îndeplinirii condițiilor obligatorii pentru doctorat.
+
+Studiind în continuare comportamentul general al exponenților Lyapunov pentru sistemul Hamiltonian cuadrupol bosonic (QBH), am reușit să determin exponentul critic al ipotezei de tip lege putere pentru tranziția la haos, pe o gamă largă de condiții inițiale și valori ale parametrilor de control. Analizând evoluția acestor exponenți, se pare că și aceștia prezintă o dependență netedă în funcție de parametrii de control (figurile \labelcref{fig:critical_exponents_D_0.00,fig:critical_exponents_D_0.10,fig:critical_exponents_D_0.20,fig:critical_exponents_D_0.30,fig:critical_exponents_D_0.40,fig:critical_exponents_D_0.50}). Mai departe, media exponenților critici variază în funcție de factorul de perturbație \(D\) (figura \ref{fig:critical_exponent_mean_vs_D}). Acest comportament interesant nu pare că a mai fost identificat sau studiat anterior în literatură, iar domnul profesor Virgil Băran consideră că avem deja suficiente rezultate cât să putem redacta un articol. În acest scop, am început să rafinez codul și datele pentru a pregăti o variantă finală a graficelor.
+        
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=1\linewidth]{reports/2026/images/5/critical_exponents_D_0.00.pdf}
+        \caption{\(D = 0\)}
+        \label{fig:critical_exponents_D_0.00}
+    \end{subfigure}
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=1\linewidth]{reports/2026/images/5/critical_exponents_D_0.10.pdf}
+        \caption{\(D = 0.1\)}
+        \label{fig:critical_exponents_D_0.10}
+    \end{subfigure}
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=1\linewidth]{reports/2026/images/5/critical_exponents_D_0.20.pdf}
+        \caption{\(D = 0.2\)}
+        \label{fig:critical_exponents_D_0.20}
+    \end{subfigure}
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=1\linewidth]{reports/2026/images/5/critical_exponents_D_0.30.pdf}
+        \caption{\(D = 0.3\)}
+        \label{fig:critical_exponents_D_0.30}
+    \end{subfigure}
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=1\linewidth]{reports/2026/images/5/critical_exponents_D_0.40.pdf}
+        \caption{\(D = 0.4\)}
+        \label{fig:critical_exponents_D_0.40}
+    \end{subfigure}
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=1\linewidth]{reports/2026/images/5/critical_exponents_D_0.50.pdf}
+        \caption{\(D = 0.5\)}
+        \label{fig:critical_exponents_D_0.50}
+    \end{subfigure}
+    \caption{Exponenții critici pentru tranziția la haos în sistemul QBH}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\linewidth]{reports/2026/images/5/critical_exponent_mean_vs_D}
+    \caption{Media exponenților critici \(\gamma\) în funcție de parametrul de control \(D\)}
+    \label{fig:critical_exponent_mean_vs_D}
+\end{figure}
+
+Referitor la simularea numerică a radiației provenite de la un fascicul Laguerre-Gauss împrăștiat de un mănunchi de electroni, am continuat să dezvolt codurile de simulare numerică și să repar sau să îmbunătățesc rezultatele. Am reprodus în mod corect graficele din lucrarea ``\textit{Scaling Properties of Angular Momentum Transfer
+to Charged Particles under Laguerre-Gauss Laser Pulse}'' a lui P.V.\ Toma, S.\ Micluța-Câmpeanu, M.\ Boca, A.\ Nicolin și V.\ Băran (figura \ref{fig:electron_final_angular_momentum_distribution}), continuând ulterior cu calculul câmpului emis (potențiale Liénard–Wiechert; figurile \ref{fig:detector_electric_field} și \ref{fig:detector_magnetic_field}). Rezultatele numerice inițiale par să fie în acord cu valorile obținute analitic în articolul ``\textit{Coherent nonlinear Thomson scattering of Laguerre-Gauss beams on an electron sheet}'' a lui P.V.~Toma, A.C.~Opinca, V.~Băran și M.~Boca.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\linewidth]{reports/2026/images/5/angular_momentum_distribution.png}
+    \caption{Distribuția momentului cinetic final al electronilor (\(N_e = 64000\)) accelerați de un fascicol Laguerre-Gauss (\(a_0 = 10^{-2}\)) cu polarizare circulară la dreapta}
+    \label{fig:electron_final_angular_momentum_distribution}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\linewidth]{reports/2026/images/5/electric_field.pdf}
+    \caption{Distribuția componentelor câmpului electric pe un detector aflat la distanță mare față de mănunchiul de electroni}
+    \label{fig:detector_electric_field}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\linewidth]{reports/2026/images/5/magnetic_field.pdf}
+    \caption{Distribuția componentelor câmpului magnetic pe un detector aflat la distanță mare față de mănunchiul de electroni}
+    \label{fig:detector_magnetic_field}
+\end{figure}
+
+
+
+Pe direcția de fizica particulelor, am continuat să lucrez la generarea datelor de semnal și de fundal pentru studiul nostru referitor la producerea unui diquark ultragreu la LHC. Am rezolvat cu actualizarea configurației de Delphes pentru simularea răspunsului detectorului la coliziuni, inclusiv în prezența \emph{pile up}. Am reușit să rezolv și problemele pe care le aveam cu generarea de procese de fundal cu mai multe jet-uri în starea finală, pentru care este obligatorie activarea setărilor de \emph{matching \& merging}, în vederea evitării \emph{double counting}-ului. Configurarea corectă a acestor setări a dus la grafice netede cu DJR, care se pot vedea în figura \ref{fig:qcd_background_differential_jet_ratio}. Procesând aceste date cu noul \emph{pipeline} de învățare automată pe care l-am implementat anterior, am început să obțin primele rezultate promițătoare pentru acest studiu.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.9\linewidth]{reports/2026/images/5/qcd_background_differential_jet_ratio.png}
+    \caption{Rata diferențială de detecție a jet-urilor de particule, pentru un fundal de QCD \(2 \to \Set{ 2, 3, 4 }\), cu \textit{matching \& merging} activat}
+    \label{fig:qcd_background_differential_jet_ratio}
+\end{figure}
+
+Pe 15 mai, am fost anunțați de Physical Review D că articolul nostru ``\textit{Observability of an ultraheavy diquark decaying into vectorlike quarks at the LHC}'', având ca autori pe D.~C.~Costache, C.~Alexa, A.M.~Dinu, I.M.~Dinu, I.~Duminică, M.S.~Filip și pe mine, a fost acceptat spre publicare în acest jurnal. Pe parcursul lunii am primit și feedback pe partea de \textit{proof-checking}, pe baza căruia am rezolvat mici probleme de tehnoredactare ale articolului.
+
+Pe tema rezolvării sistemelor liniare mari folosind metoda de precondiționare iterativă, am discutat cu dl.~prof.~Cristian Rusu și am stabilit să defalcăm munca noastră în mai multe lucrări independente și concise, pentru a nu ne extinde prea mult cercetările. În acest sens, am început să lucrez la un articol care să prezinte metoda noastră de precondiționare iterativă alternantă, în care un model de \emph{reinforcement learning} controlează procesul de rezolvare a sistemului prin intermediul metodei gradienților conjugați, alternând inteligent între a îmbunătăți matricea de precondiționare (bazată pe descompunerea Cholesky parțială cu pivotare) și a efectua mai mulți pași de CGM. Experimentele inițiale sugerează că această abordare este cel puțin la fel de eficientă ca algoritmul clasic de rezolvare, care calculează mai întâi matricea de precondiționare până la un nivel fixat, iar apoi rulează metoda gradienților conjugați.
+
+Am discutat și cu colegul Rareș Cristea și am început să scriem la articolul de conferință ``\emph{Automatic Evaluation of Students’ Software Engineering Projects using Agentic AI}''. Acesta va conține o descriere riguroasă a inițiativei noastre de a evalua proiectele de inginerie software ale studenților folosind agenți de inteligență artificială. Această cercetare nu ar fi fost posibilă fără să avem la dispoziție resursele computaționale din Centrul de Calcul Avansat (ACC-UB), pentru care am continuat să lucrăm la dezvoltarea unei politici de gestiune și de acordare acces (pentru restul utilizatorilor din UB).
+
+În mai a avut loc și ediția de anul acesta a Sesiunii Științifice a Facultății de Fizică a Universității din București (SSFFB). Am participat prin susținerea orală a \href{github.com/GabrielMajeri/ssffb-2026-presentations/}{trei prezentări}, bazate pe activitatea mea curentă de cercetare:
+\begin{itemize}
+    \item ``\emph{Critical phenomena and universality at the transition to chaos in Hamiltonian systems}'', pe baza studiului tranziției la haos, în colaborare cu dl.~prof.~Virgil Băran;
+
+    \item ``\emph{Angular momentum transfer from a Laguerre-Gauss beam scattered by an electron bunch}'', în colaborare cu conf.~dr.~Mădălina Boca;
+
+    \item ``\emph{Search for new resonances in particle collisions with high final-state jet multiplicity - High-Energy Physics}'', în colaborare cu colegii din grupul de cercetare al domnului C.S.~I.~Călin Alexa;
+\end{itemize}
+
+Totodată, am participat la susținerea publică a tezei de doctorat a lui Andrei Rădoacă-Dogaru și la presusținerea tezei Ioanei Duminică, ambele în data de 28 mai.
+
+\textbf{Observațiile conducătorului științific}:
+
+\makereportpostamble{29 mai 2026}
